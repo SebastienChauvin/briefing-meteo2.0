@@ -148,7 +148,7 @@
             
                             var arrayImages = [];
                             for(i=0; i<10; i++){
-                                arrayImages.push('<li><img src="http://fr.sat24.com/image?type=infraPolair&region=eu&timestamp='+ymd+hoursat+minutesat+ '"></li>');
+                                arrayImages.push('<li><img src="https://fr.sat24.com/image?type=infraPolair&region=eu&timestamp='+ymd+hoursat+minutesat+ '"></li>');
                                 previousSat();
                             }
                             for(j=arrayImages.length-1; j>0; j--){
@@ -191,7 +191,7 @@
             
                             var arrayImages = [];
                             for(i=0; i<10; i++){
-                                arrayImages.push('<li><img src="http://fr.sat24.com/image?type=visual&region=fr&timestamp='+ymd+hoursat+minutesat+ '"></li>');
+                                arrayImages.push('<li><img src="https://fr.sat24.com/image?type=visual&region=fr&timestamp='+ymd+hoursat+minutesat+ '"></li>');
                                 previousSat();
                             }
                             for(j=arrayImages.length-1; j>0; j--){
@@ -211,14 +211,14 @@
 			    <!-- un slide -->
 			    <section>
                     <h4>Radar pluie</h4>
-                    <img src="http://www.meteo60.fr/radars/animation-radar-france.gif" style="height:620px;">
+                    <img src="https://www.meteo60.fr/radars/animation-radar-france.gif" style="height:620px;">
 			    </section>
 			
 			    <!-- un slide -->
 			    <!-- un slide -->
 			    <section>
                     <h4>Précipitations prévues à 17Z</h4>
-                    <script>document.write('<img src="http://modeles7.meteociel.fr/modeles/arome/runs/'+ymd+'00/aromehd-1-17-4.png" style="height:620px;">');</script>
+                    <script>document.write('<img src="https://modeles7.meteociel.fr/modeles/arome/runs/'+ymd+'00/aromehd-1-17-4.png" style="height:620px;">');</script>
 			    </section>
 			
 			<!-- meteo france -->
@@ -313,7 +313,7 @@
                         var secs=seconds+secondsGramet;
                         if(secs.toString().length==1){var zero = '0'; secs = zero.concat(secs);}
             
-                        document.getElementById("gramet").src = 'http://www.ogimet.com/tmp/gramet_'+ymd+hours+minutes+secs+'_'+ymd+gfs+'_LFMX_1970010100_1970010100.png';
+                        document.getElementById("gramet").src = 'https://www.ogimet.com/tmp/gramet_'+ymd+hours+minutes+secs+'_'+ymd+gfs+'_LFMX_1970010100_1970010100.png';
                     }
                     var chercheGramet = function(){
                         sleep(1000);
@@ -323,18 +323,18 @@
                         }
                     }
                     </script>-->
-                     <iframe type="hidden" onload="afficheGramet()" src="http://www.ogimet.com/display_gramet.php?lang=en&icao=LFMX&hini=0&tref='+timeSince1970tronque+'&hfin=0&fl=100&submit=submit" width="1024" height="768"></iframe> 
+                     <iframe type="hidden" onload="afficheGramet()" src="https://www.ogimet.com/display_gramet.php?lang=en&icao=LFMX&hini=0&tref='+timeSince1970tronque+'&hfin=0&fl=100&submit=submit" width="1024" height="768"></iframe> 
             	</section>
             			
             <!-- sondage météociel -->
             	<section>
                     <h4>Sondage modélisé Météociel / Saint Auban</h4>
-                    <iframe src="http://www.meteociel.fr/modeles/sondage2arome.php?archive=0&ech=6&map=1&wrf=0&region=&type=1&lat=44.0825&lon=5.99417" width="1024" height="768"></iframe>
+                    <iframe src="https://www.meteociel.fr/modeles/sondage2arome.php?archive=0&ech=6&map=1&wrf=0&region=&type=1&lat=44.0825&lon=5.99417" width="1024" height="768"></iframe>
 			    </section>
 			
 			    <section>
                     <h4>Sondage modélisé Météociel / Briançon</h4>
-                    <iframe src="http://www.meteociel.fr/modeles/sondage2arome.php?archive=0&ech=6&map=1&wrf=0&region=&type=1&lat=44.8964&lon=6.64941" width="1024" height="768"></iframe>
+                    <iframe src="https://www.meteociel.fr/modeles/sondage2arome.php?archive=0&ech=6&map=1&wrf=0&region=&type=1&lat=44.8964&lon=6.64941" width="1024" height="768"></iframe>
 			    </section>
 			
 			
@@ -342,7 +342,7 @@
 			    <section>
                     <h4>Humidité relative 12H UTC</h4>
                     <script>
-                        document.write('<img src="http://modeles2.meteociel.fr/modeles_gfs/runs/'+ymd+'00/12-600.GIF" style="max-width:100%; max-height:100%; height:620px">');
+                        document.write('<img src="https://modeles2.meteociel.fr/modeles_gfs/runs/'+ymd+'00/12-600.GIF" style="max-width:100%; max-height:100%; height:620px">');
                     </script>
 			    </section> -->
 			
@@ -350,7 +350,7 @@
 			    <section>
                     <h4>Surface based CAPE 12H UTC</h4>
                     <script>
-                        document.write('<img src="http://modeles2.meteociel.fr/modeles_gfs/runs/'+ymd+'00/12-505.GIF" style="max-width:100%; max-height:100%; height:620px">');
+                        document.write('<img src="https://modeles2.meteociel.fr/modeles_gfs/runs/'+ymd+'00/12-505.GIF" style="max-width:100%; max-height:100%; height:620px">');
                     </script>    
 			    </section> -->
 			
@@ -358,7 +358,7 @@
 			    <section>
                     <h4>Températures à 9h UTC</h4>
                     <script>
-                        document.write('<img src="http://meteomaps.s3.amazonaws.com/eltiempo/datamaps/meteorama_fr_temp-'+ymd+'0900.png" style="max-width:100%; max-height:100%;">');
+                        document.write('<img src="https://meteomaps.s3.amazonaws.com/eltiempo/datamaps/meteorama_fr_temp-'+ymd+'0900.png" style="max-width:100%; max-height:100%;">');
                     </script> 
 			    </section> -->
 			
@@ -366,7 +366,7 @@
 			    <section>
                     <h4>Températures à 15h UTC</h4>
                     <script>
-                        document.write('<img src="http://meteomaps.s3.amazonaws.com/eltiempo/datamaps/meteorama_fr_temp-'+ymd+'1500.png" style="max-width:100%; max-height:100%;">');
+                        document.write('<img src="https://meteomaps.s3.amazonaws.com/eltiempo/datamaps/meteorama_fr_temp-'+ymd+'1500.png" style="max-width:100%; max-height:100%;">');
                     </script> 
 			    </section> -->
 			
@@ -471,7 +471,7 @@
 			    </section>
 			 
 			    <section data-autoslide="1">
-			        <iframe src="http://www.meteociel.fr/previsions/33652/chateau_arnoux_saint_auban.htm" width="1024" height="768"></iframe>
+			        <iframe src="https://www.meteociel.fr/previsions/33652/chateau_arnoux_saint_auban.htm" width="1024" height="768"></iframe>
 			    </section>
 
 			
@@ -506,25 +506,25 @@
         <script>
             $(document).ready(function() {
                 var timestamp = Math.round(+new Date() / 1000);
-                var url = "http://www.ogimet.com/display_gramet.php?lang=en&icao=lfmx&hini=0&tref=" + timestamp + "&hfin=0&fl=100&submit=submit";
+                var url = "https://www.ogimet.com/display_gramet.php?lang=en&icao=lfmx&hini=0&tref=" + timestamp + "&hfin=0&fl=100&submit=submit";
                 $("#ogimet").attr("href", url);
             });
         </script>
 
         <h4>Sites externes</h4>
         <ul>
-            <li><a target="_blank" id="ogimet" class="roll" href="http://www.ogimet.com/display_gramet.php?lang=en&amp;icao=lfmx&amp;hini=0&amp;tref=1455456100&amp;hfin=0&amp;fl=100&amp;submit=submit"><span data-title="Coupe LFYR / Ogimet">Coupe LFYR / Ogimet</span></a></li>
-            <li><a href="http://fr.topmeteo.eu/weather/gliding" target="_blank" class="roll"><span data-title="Top météo">Top météo</span></a></li>
-            <li><a href="http://www.sia.aviation-civile.gouv.fr/asp/frameset_fr.asp?m=39" target="_blank" class="roll"><span data-title="Carte AZBA">Carte AZBA</span></a></li>
-            <li><a href="http://notamweb.aviation-civile.gouv.fr/Script/IHM/Bul_Aerodrome.php?Langue=FR" target="_blank" class="roll"><span data-title="Notam Aérodromes">Notam Aérodromes</span></a></li>
-            <li><a href="http://www.sia.aviation-civile.gouv.fr/asp/frameset_fr.asp?m=1" target="_blank" class="roll"><span data-title="Sup AIP">Sup AIP</span></a></li>
+            <li><a target="_blank" id="ogimet" class="roll" href="https://www.ogimet.com/display_gramet.php?lang=en&amp;icao=lfmx&amp;hini=0&amp;tref=1455456100&amp;hfin=0&amp;fl=100&amp;submit=submit"><span data-title="Coupe LFYR / Ogimet">Coupe LFYR / Ogimet</span></a></li>
+            <li><a href="https://fr.topmeteo.eu/weather/gliding" target="_blank" class="roll"><span data-title="Top météo">Top météo</span></a></li>
+            <li><a href="https://www.sia.aviation-civile.gouv.fr/asp/frameset_fr.asp?m=39" target="_blank" class="roll"><span data-title="Carte AZBA">Carte AZBA</span></a></li>
+            <li><a href="https://notamweb.aviation-civile.gouv.fr/Script/IHM/Bul_Aerodrome.php?Langue=FR" target="_blank" class="roll"><span data-title="Notam Aérodromes">Notam Aérodromes</span></a></li>
+            <li><a href="https://www.sia.aviation-civile.gouv.fr/asp/frameset_fr.asp?m=1" target="_blank" class="roll"><span data-title="Sup AIP">Sup AIP</span></a></li>
         </ul>
 			    </section> -->
 			
 			
 			<!-- Tous les slides montrant les Notams selon la liste définie plus haut, pour les 12 prochaines heures -->
                 <section data-autoslide="1">
-                    <iframe src="http://www.notaminfo.com/francemap" width="1024" height="768"></iframe>
+                    <iframe src="https://www.notaminfo.com/francemap" width="1024" height="768"></iframe>
                 </section>
 			
 			<!-- demain -->
@@ -555,25 +555,25 @@
                     <script>
                         var jour = date.getDay();
                         if (jour == 0) {
-                            image = '<img src="http://www.lameteo.org/images/previsions/lundi.png" style="height:620px">';
+                            image = '<img src="https://www.lameteo.org/images/previsions/lundi.png" style="height:620px">';
                         }
                         if (jour == 1) {
-                            image = '<img src="http://www.lameteo.org/images/previsions/mardi.png" style="height:620px">';
+                            image = '<img src="https://www.lameteo.org/images/previsions/mardi.png" style="height:620px">';
                         }
                         if (jour == 2) {
-                            image = '<img src="http://www.lameteo.org/images/previsions/mercredi.png" style="height:620px">';
+                            image = '<img src="https://www.lameteo.org/images/previsions/mercredi.png" style="height:620px">';
                         }
                         if (jour == 3) {
-                            image = '<img src="http://www.lameteo.org/images/previsions/jeudi.png" style="height:620px">';
+                            image = '<img src="https://www.lameteo.org/images/previsions/jeudi.png" style="height:620px">';
                         }
                         if (jour == 4) {
-                            image = '<img src="http://www.lameteo.org/images/previsions/vendredi.png" style="height:620px">';
+                            image = '<img src="https://www.lameteo.org/images/previsions/vendredi.png" style="height:620px">';
                         }
                         if (jour == 5) {
-                            image = '<img src="http://www.lameteo.org/images/previsions/samedi.png" style="height:620px">';
+                            image = '<img src="https://www.lameteo.org/images/previsions/samedi.png" style="height:620px">';
                         }
                         if (jour == 6) {
-                            image = '<img src="http://www.lameteo.org/images/previsions/dimanche.png" style="height:620px">';
+                            image = '<img src="https://www.lameteo.org/images/previsions/dimanche.png" style="height:620px">';
                         }
                         document.write(image);
                     </script>
