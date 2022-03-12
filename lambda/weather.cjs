@@ -15,7 +15,7 @@ const parseMeteociel = (data) => {
                     try {
                         const items = select(l, 'td');
                         if (i === 0) items.shift();
-                        const w = (i) => `${items[i].children[0].attribs.alt} ${items[i].children[1].raw} km/h`;
+                        const w = (i) => `${items[i].children[0].attribs.alt.split(':')[0]} ${items[i].children[1].raw} km/h`;
                         const t = (i) => items[i].children[0].raw;
                         const time = t(0);
                         const windSurface = w(12);
