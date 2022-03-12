@@ -107,7 +107,15 @@
                                 document.getElementById('datapoints').innerHTML = `
                                     <li>QNH: ${data.pressure}
                                     <li>Coucher du soleil: ${data.sunset}
-                                    <li>Température: ${data.temp}`;
+                                    <li>Vents:
+                                    <ul>
+                                       <li>Surface: ${data.windSurface}</li>
+                                       <li>1500 m: ${data.wind1500}</li>
+                                       <li>3000 m: ${data.wind3000}</li>
+                                       <li>5000 m: ${data.wind5000}</li>
+                                    </ul>
+                                    </li>
+                                    <li>Température: ${data.temp} ISO 0: ${data.iso0}`;
                             };
                             c();
                         </script>
