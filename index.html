@@ -116,6 +116,8 @@
                                     </ul>
                                     </li>
                                     <li><b>Température:</b> ${data.temp} <b>ISO 0:</b> ${data.iso0}`;
+                                document.getElementById('qnh').value = data.pressure;
+                                updateFLs();
                             };
                             c();
                         </script>
@@ -311,7 +313,7 @@
                         }
             
                         $(document).ready(function() {
-                            $("#qnh").change(function() {
+                            updateFLs = function() {
                                 var qnh_value = $("#qnh").val();
                                 var mhPa = 8.5344;
                                 var pMer = 1013.25;
@@ -356,7 +358,8 @@
                                 fl = round5(fl);
                                 fl = fl+' (5800 Bure)';
                                 $("#fl195").text(fl);
-                            });
+                            };
+                            $("#qnh").change(updateFLs);
                         });
                     </script>
                     
@@ -392,11 +395,6 @@
                                 </tr>
                             </tbody></table>
                         </div>
-                        <div style="display:block; margin:10px; text-align:left">
-                           <p> SS : <input type="text" id="ss" class="big_input_qnh" > </p>
-                           <p>Fin des vols : <input type="text" id="fdv" class="big_input_qnh" ></p>
-                        </div>
-            
                     </div>
 			        
 			    </section>
