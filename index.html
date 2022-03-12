@@ -105,17 +105,17 @@
                             const c = async () => {
                                 data = (await (await fetch('https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=44.3248&lon=6.0329')).json())
                                 document.getElementById('datapoints').innerHTML = `
-                                    <li>QNH: ${data.pressure}
-                                    <li>Coucher du soleil: ${data.sunset}
-                                    <li>Vents:
+                                    <li><b>QNH:</b> ${data.pressure}
+                                    <li><b>Coucher du soleil:</b> ${data.sunset}
+                                    <li><b>Vents</b>
                                     <ul>
-                                       <li>Surface: ${data.windSurface}</li>
-                                       <li>1500 m: ${data.wind1500}</li>
-                                       <li>3000 m: ${data.wind3000}</li>
-                                       <li>5000 m: ${data.wind5000}</li>
+                                       <li><b>Surface:</b> ${data.windSurface}</li>
+                                       <li><b>1500 m:</b> ${data.wind1500}</li>
+                                       <li><b>3000 m:</b> ${data.wind3000}</li>
+                                       <li><b>5000 m:</b> ${data.wind5000}</li>
                                     </ul>
                                     </li>
-                                    <li>Température: ${data.temp} ISO 0: ${data.iso0}`;
+                                    <li><b>Température:</b> ${data.temp} <b>ISO 0:</b> ${data.iso0}`;
                             };
                             c();
                         </script>
