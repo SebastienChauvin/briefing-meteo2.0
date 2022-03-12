@@ -1,13 +1,24 @@
 const axios = require("axios");
+// const select = require('soupselect').select;
+// const htmlparser = require("htmlparser");
 
 const appid = process.env.appid;
 
-exports.handler = async (event) => {
+// const meteociel = async () => {
+//     const html = await axios.get('')
+// }
+
+const openweather = async () => {
     const {lat, lon} = event.queryStringParameters;
     const r = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appid}&units=metric`);
     console.log(r.data);
     const {pressure, temp} = r.data.main;
     const sunset = new Date(r.data.sys.sunset * 1000).toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris'});
+    return {pressure, temp, sunset};
+}
+
+exports.handler = async (event) => {
+    const {pressure, temp, sunset} = await openweather();
 
     const response = {
         statusCode: 200,
