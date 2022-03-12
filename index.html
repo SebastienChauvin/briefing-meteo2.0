@@ -116,7 +116,7 @@
                                     </ul>
                                     </li>
                                     <li><b>Température:</b> ${data.temp} <b>ISO 0:</b> ${data.iso0}
-                                    <li><i>Source: meteociel (Arome) & openweathermap</i></li>`;
+                                    <li style="margin-top: 20px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude/1655/la_motte_du_caire.htm">meteociel (GFS)</a> & openweathermap (sunset / qnh)</i></li>`;
                                 document.getElementById('qnh').value = data.pressure;
                                 updateFLs();
                             };
