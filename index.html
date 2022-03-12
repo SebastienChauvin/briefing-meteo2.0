@@ -99,13 +99,15 @@
 			    </section>
 
                 <section>
-                    <ul>
+                    <ul id="datapoints">
+                        <li>Chargement...</li>
                         <script>
                             const c = async () => {
                                 data = (await (await fetch('https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=44.3248&lon=6.0329')).json())
-                                document.writeln(`<li>QNH: ${data.pressure}`);
-                                document.writeln(`<li>Coucher du soleil: ${data.sunset}`);
-                                document.writeln(`<li>Température: ${data.temp}`);
+                                document.getElementById('datapoints').innerHTML = `
+                                    <li>QNH: ${data.pressure}
+                                    <li>Coucher du soleil: ${data.sunset}
+                                    <li>Température: ${data.temp}`;
                             };
                             c();
                         </script>
