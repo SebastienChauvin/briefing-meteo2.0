@@ -95,12 +95,22 @@
 			    <!-- Premier slide -->
 			    <section>
                     <h1>Briefing Météo</h1>
-                    <p><small>Alpes du sud <script>document.write(day+'/'+month+'/'+year);</script></small></p>
+                    <p><small>La Motte du Caire<br/>Alpes du sud <script>document.write(day+'/'+month+'/'+year);</script></small></p>
 			    </section>
-			              
-		
-			
-			    <!-- un slide -->
+
+                <section>
+                    <ul>
+                        <script>
+                            data = (await (await fetch('https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=44.3248&lon=6.0329')).json())
+                            document.writeln(`<li>QNH: ${data.pressure}`);
+                            document.writeln(`<li>Coucher du soleil: ${data.sunset}`);
+                            document.writeln(`<li>Température: ${data.temp}`);
+                        </script>
+                    </ul>
+                </section>
+
+
+                <!-- un slide -->
 			    <section>
                     <h4>Prévision Front à 12H</h4>
                     <script>

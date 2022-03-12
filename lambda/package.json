@@ -1,0 +1,7 @@
+{
+  "name": "briefing-meteo2.0",
+  "version": "1.0.0",
+  "dependencies": {
+    "axios": "^0.26.1"
+  }
+}
