@@ -474,46 +474,25 @@
 			
 			
 			    <section>
-                    <h4>Prévision Front à 0H UTC J+1</h4>
+                    <h4>Prévision Front à 12H UTC J+1</h4>
                     <script>
                         var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
                         var day = tomorrow.getUTCDate();
                         if(day.toString().length==1){var zero = '0'; day = zero.concat(day);}
-                        document.write('<img src="https://cdn.knmi.nl/knmi/map/page/weer/waarschuwingen_verwachtingen/weerkaarten/PL'+day+'00_large.gif" style="height:620px;">');
+                        document.write('<img src="https://cdn.knmi.nl/knmi/map/page/weer/waarschuwingen_verwachtingen/weerkaarten/PL'+day+'12_large.gif" style="height:620px;">');
                     </script>
 			    </section>
 			
-			    <section>
-                    <h4>Géopotentielle à 500mb J+1</h4>
-                    <img src="https://static.meteoblue.com/pub/nems12/maps/00VHG50_036.jpg" style="height:620px;">
-			    </section>
+<!--			    <section>-->
+<!--                    <h4>Géopotentielle à 500mb J+1</h4>-->
+<!--                    <img src="https://static.meteoblue.com/pub/nems12/maps/00VHG50_036.jpg" style="height:620px;">-->
+<!--			    </section>-->
 			
 			    <section>
                     <h4>Prévisions à 24h</h4>
                     <script>
-                        var jour = date.getDay();
-                        if (jour == 0) {
-                            image = '<img src="https://www.lameteo.org/images/previsions/lundi.png" style="height:620px">';
-                        }
-                        if (jour == 1) {
-                            image = '<img src="https://www.lameteo.org/images/previsions/mardi.png" style="height:620px">';
-                        }
-                        if (jour == 2) {
-                            image = '<img src="https://www.lameteo.org/images/previsions/mercredi.png" style="height:620px">';
-                        }
-                        if (jour == 3) {
-                            image = '<img src="https://www.lameteo.org/images/previsions/jeudi.png" style="height:620px">';
-                        }
-                        if (jour == 4) {
-                            image = '<img src="https://www.lameteo.org/images/previsions/vendredi.png" style="height:620px">';
-                        }
-                        if (jour == 5) {
-                            image = '<img src="https://www.lameteo.org/images/previsions/samedi.png" style="height:620px">';
-                        }
-                        if (jour == 6) {
-                            image = '<img src="https://www.lameteo.org/images/previsions/dimanche.png" style="height:620px">';
-                        }
-                        document.write(image);
+                        const jour = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'][date.getDay()];
+                        document.write(`<img src="https://www.lameteo.org/images/previsions/${jour}.png" style="height:620px">`);
                     </script>
 			    </section>
 			
