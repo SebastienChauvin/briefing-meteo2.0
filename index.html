@@ -542,7 +542,9 @@
             Reveal.configure({
                 autoSlide: 5000
             });
-            Reveal.toggleAutoSlide();
+            if (!window.location.href.endsWith('#start')) {
+                Reveal.toggleAutoSlide();
+            }
 		</script>
 
 	</body>
