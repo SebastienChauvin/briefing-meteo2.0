@@ -115,8 +115,8 @@
                                        <li><b>5000 m:</b> ${data.wind5000}</li>
                                     </ul>
                                     </li>
-                                    <li><b>Température:</b> ${data.temp} <b>ISO 0:</b> ${data.iso0}
-                                    <li style="margin-top: 20px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude/1655/la_motte_du_caire.htm">meteociel (GFS)</a> & openweathermap</i></li>`;
+                                    <li><b>Température:</b> ${data.temp} <b>ISO 0:</b> ${data.iso0} <b>3000m:</b> ${data.temp3000} <b>5000m:</b> ${data.temp5000}
+                                    <li style="margin-top: 20px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a> & openweathermap</i></li>`;
                                 document.getElementById('qnh').value = data.pressure;
                                 updateFLs();
                             };

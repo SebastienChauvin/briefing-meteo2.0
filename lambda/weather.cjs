@@ -15,8 +15,11 @@ const parseMeteociel = (data) => {
                     try {
                         const items = select(l, 'td');
                         if (i === 0) items.shift();
-                        const w = (i) => `${items[i].children[0].attribs.alt.split(':')[0]} ${items[i].children[1].raw} km/h`;
-                        const t = (i) => items[i].children[0].raw;
+                        const w = (i) => `${items[i].children[0].attribs.alt.split(':')[0].trim()} ${(items[i].children[1].raw / 1.852).toFixed(1)} kt`;
+                        const t = (i) => items[i]?.children?.[0]?.children?.[0]?.raw ?? items[i]?.children?.[0]?.raw;
+                        const temp = t(1);
+                        const temp3000 = t(4);
+                        const temp5000 = t(6);
                         const time = t(0);
                         const windSurface = w(12);
                         const wind1500 = w(13);
@@ -24,8 +27,9 @@ const parseMeteociel = (data) => {
                         const wind5000 = w(17);
                         const pressure = t(19);
                         const iso0 = `${t(21)}m`;
-                        return {time, windSurface, wind1500, wind3000, wind5000, pressure, iso0};
+                        return {time, temp, temp3000, temp5000, windSurface, wind1500, wind3000, wind5000, pressure, iso0};
                     } catch (e) {
+                        console.error(e);
                         return {time: '--'};
                     }
                 });
@@ -38,23 +42,22 @@ const parseMeteociel = (data) => {
 }
 
 const meteociel = () => {
-    return axios.get('https://www.meteociel.fr/previsions-haute-altitude/1655/la_motte_du_caire.htm')
+    return axios.get('https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm')
         .then(html => parseMeteociel(html.data));
 }
 
 const openweather = async (lat, lon) => {
     const r = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appid}&units=metric`);
-    console.log(r.data);
-    const {pressure, temp} = r.data.main;
+    const {pressure, temp, clouds} = r.data.main;
     const sunset = new Date(r.data.sys.sunset * 1000).toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris'});
-    return {pressure, temp, sunset};
+    return {pressure, temp, sunset, clouds};
 }
 
 exports.handler = async (event) => {
     const {lat, lon} = event.queryStringParameters;
-    const {pressure, temp, sunset} = await openweather(lat, lon);
-    // const pressure= 1, temp= 1, sunset= 1;
-    const {windSurface, wind1500, wind3000, wind5000, iso0} = await meteociel();
+    const [ow, mc] = await Promise.all([openweather(lat, lon), meteociel()]);
+    const {sunset, clouds: owClouds} = ow;
+    const {windSurface, wind1500, wind3000, wind5000, iso0, temp, temp3000, temp5000, pressure} = mc;
 
     const response = {
         statusCode: 200,
@@ -63,7 +66,7 @@ exports.handler = async (event) => {
             "Access-Control-Allow-Origin": "https://sebastienchauvin.github.io",
             "Access-Control-Allow-Methods": "OPTIONS,GET"
         },
-        body: JSON.stringify({pressure, temp, sunset, windSurface, wind1500, wind3000, wind5000, iso0}),
+        body: JSON.stringify({pressure, temp, clouds: owClouds?.all, temp3000, temp5000, sunset, windSurface, wind1500, wind3000, wind5000, iso0}),
     };
     return response;
 };
