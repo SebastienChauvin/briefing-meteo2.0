@@ -104,7 +104,9 @@
                         <li>Chargement...</li>
                         <script>
                             const c = async () => {
-                                data = (await (await fetch('https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=44.3248&lon=6.0329')).json())
+                                const d = (lat, lon, mp) => fetch(`https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=${lat}&lon=${lon}${mp ? "&sources=mp" : ""}`).then(r => r.json());
+                                values = Promise.all([d(44.3248, 6.0329, false), d(44.401, 6.3824, true), d(44.193, 5.94, true)]);
+                                data = values[0];
                                 document.getElementById('datapoints').innerHTML = `
                                     <li><b>QNH:</b> ${data.pressure}
                                     <li><b>Coucher du soleil:</b> ${data.sunset}
@@ -116,9 +118,9 @@
                                        <li><b>5000 m:</b> ${data.wind5000}</li>
                                     </ul>
                                     </li>
-                                    <li><b>Température:</b> ${data.temp} <b>3000m:</b> ${data.temp3000} <b>5000m:</b> ${data.temp5000}
-                                    <li><b>ISO 0:</b> ${data.iso0}</li>
-                                    <li style="margin-top: 20px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a> & openweathermap</i></li>`;
+                                    <li><b>Température:</b> ${data.temp} <b>ISO 0&deg;C:</b> ${data.iso0}m <b>ISO -10&deg;C:</b> ${data.isoM10}m</li>
+                                    <li><b>Plafond:</b> La Motte: ${values[0].plafond}m Ecrins: ${values[1].plafond}m Sisteron: ${values[2].plafond}m</li>
+                                    <li style="margin-top: 20px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3258,6.0315,10">Meteo-Parapente</a></i></li>`;
                                 document.getElementById('qnh').value = data.pressure;
                                 updateFLs();
                             };

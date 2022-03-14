@@ -4,6 +4,31 @@ const htmlparser = require("htmlparser");
 
 const appid = process.env.appid;
 
+const parseMeteoParapente = (data) => {
+    const {tc, z, ter, pblh} = Object.values(data.data)[0];
+    const findTemp = (t) => tc.findIndex(v => v <= t);
+
+    return {temp: tc[0], iso0: z[findTemp(0)], isoM10: z[findTemp(-10)], plafond: ter + pblh};
+}
+
+const meteoParapenteSounding = async (run, date, time, lat, lon) => {
+    return axios.get(`https://data0.meteo-parapente.com/data2017.php?run=${run}&location=${lat},${lon}&date=${date}&plot=sounding&time=${time}`)
+}
+
+const meteoParapenteRuns = async () => {
+    return axios.get(`https://data0.meteo-parapente.com/status.php?refresh=${Date.now()}`).then(body => body.data.france);
+}
+
+const meteoParapente = async (lat, lon) => {
+    return meteoParapenteRuns().then(runs => {
+        const f = Intl.NumberFormat('en-US', {minimumIntegerDigits: 2});
+        const n = new Date();
+        const day = `${n.getFullYear()}${f.format(n.getMonth() + 1)}${f.format(n.getDate())}`;
+        const run = runs.find(r => r.status === 'complete' && r.day === day);
+        // Time in UTC
+        return meteoParapenteSounding(run.run, `${day}120000`, '12:00', lat, lon).then(result => parseMeteoParapente(result.data));
+    });
+}
 const parseMeteociel = (data) => {
     return new Promise((resolve) => {
         const handler = new htmlparser.DefaultHandler((err, dom) => {
@@ -27,7 +52,18 @@ const parseMeteociel = (data) => {
                         const wind5000 = w(17);
                         const pressure = t(19);
                         const iso0 = `${t(21)}m`;
-                        return {time, temp, temp3000, temp5000, windSurface, wind1500, wind3000, wind5000, pressure, iso0};
+                        return {
+                            time,
+                            temp,
+                            temp3000,
+                            temp5000,
+                            windSurface,
+                            wind1500,
+                            wind3000,
+                            wind5000,
+                            pressure,
+                            iso0
+                        };
                     } catch (e) {
                         console.error(e);
                         return {time: '--'};
@@ -49,30 +85,41 @@ const meteociel = () => {
 const openweather = async (lat, lon) => {
     const r = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appid}&units=metric`);
     const {pressure, temp, clouds} = r.data.main;
-    const sunset = new Date(r.data.sys.sunset * 1000).toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris'});
+    const sunset = new Date(r.data.sys.sunset * 1000).toLocaleTimeString('fr-FR', {timeZone: 'Europe/Paris'});
     return {pressure, temp, sunset, clouds};
 }
 
 exports.handler = async (event) => {
-    const {lat, lon} = event.queryStringParameters;
-    const [ow, mc] = await Promise.all([openweather(lat, lon), meteociel()]);
-    const {sunset, clouds: owClouds} = ow;
-    const {windSurface, wind1500, wind3000, wind5000, iso0, temp, temp3000, temp5000, pressure} = mc;
+    const {lat, lon, sources} = event.queryStringParameters;
+    const sourceList = (sources ?? 'ow,mc,mp').split(',');
+    const [ow, mc, mp] = await Promise.all([
+        sourceList.includes('ow') ? openweather(lat, lon) : {},
+        sourceList.includes('mc') ? meteociel() : {},
+        sourceList.includes('mp') ? meteoParapente(lat, lon) : {}
+    ]);
+    const result = {...ow, ...mc, ...mp};
 
     const response = {
         statusCode: 200,
         headers: {
-            "Access-Control-Allow-Headers" : "Content-Type",
+            "Access-Control-Allow-Headers": "Content-Type",
             "Access-Control-Allow-Origin": "https://sebastienchauvin.github.io",
             "Access-Control-Allow-Methods": "OPTIONS,GET"
         },
-        body: JSON.stringify({pressure, temp, clouds: owClouds?.all, temp3000, temp5000, sunset, windSurface, wind1500, wind3000, wind5000, iso0}),
+        body: JSON.stringify(result),
     };
     return response;
 };
 
 // -------------------------------------------------------------------------------------------------------
 
+// const fs = require('fs'); // DEBUG
+//
+// fs.readFile('sounding.json', (err, data) => {
+//     d = parseMeteoParapente(data);
+//     console.log(d);
+// })
+// return 0;
 
 // const fs = require('fs'); // DEBUG
 //
@@ -81,6 +128,13 @@ exports.handler = async (event) => {
 //         console.log(d);
 //     });
 // })
+// return 0;
+
+//
+// let lat = `44.4014`;
+// let lon = `6.3817`;
+// meteoParapente(lat, lon).then(d => console.log(d));
+//
 // return 0;
 
 const event = {
