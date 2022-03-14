@@ -93,9 +93,9 @@ exports.handler = async (event) => {
     const {lat, lon, sources} = event.queryStringParameters;
     const sourceList = (sources ?? 'ow,mc,mp').split(',');
     const [ow, mc, mp] = await Promise.all([
-        sourceList.includes('ow') ? openweather(lat, lon) : {},
-        sourceList.includes('mc') ? meteociel() : {},
-        sourceList.includes('mp') ? meteoParapente(lat, lon) : {}
+        sourceList.includes('ow') ? openweather(lat, lon).catch(() => {}) : {},
+        sourceList.includes('mc') ? meteociel().catch(() => {}) : {},
+        sourceList.includes('mp') ? meteoParapente(lat, lon).catch(() => {}) : {}
     ]);
     const result = {...ow, ...mc, ...mp};
 
