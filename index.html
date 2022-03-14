@@ -108,18 +108,18 @@
                                 values = await Promise.all([d(44.3248, 6.0329, false), d(44.401, 6.3824, true), d(44.193, 5.94, true)]);
                                 data = values[0];
                                 document.getElementById('datapoints').innerHTML = `
-                                    <li><b>QNH:</b> ${data.pressure}
-                                    <li><b>Coucher du soleil:</b> ${data.sunset}
+                                    <li><b>QNH&nbsp;:</b> ${data.pressure}
+                                    <li><b>Coucher du soleil&nbsp;:</b> ${data.sunset}
                                     <li><b>Vents</b>
                                     <ul>
-                                       <li><b>Surface:</b> ${data.windSurface}</li>
-                                       <li><b>1500 m:</b> ${data.wind1500}</li>
-                                       <li><b>3000 m:</b> ${data.wind3000}</li>
-                                       <li><b>5000 m:</b> ${data.wind5000}</li>
+                                       <li><b>Surface&nbsp;:</b> ${data.windSurface}</li>
+                                       <li><b>1500 m&nbsp;:</b> ${data.wind1500}</li>
+                                       <li><b>3000 m&nbsp;:</b> ${data.wind3000}</li>
+                                       <li><b>5000 m&nbsp;:</b> ${data.wind5000}</li>
                                     </ul>
                                     </li>
-                                    <li><b>Temp:</b> ${data.temp}&deg;C <b>ISO 0&deg;C:</b> ${data.iso0}m <b>ISO -10&deg;C:</b> ${data.isoM10}m</li>
-                                    <li><b>Plafond:</b>${values[0].plafond}m Ecrins: ${values[1].plafond}m Sisteron: ${values[2].plafond}m</li>
+                                    <li><b>Temp&nbsp;:</b> ${data.temp}&deg;C <b>ISO 0&deg;C:</b> ${data.iso0}m <b>ISO -10&deg;C:</b> ${data.isoM10}m</li>
+                                    <li><b>Plafond&nbsp;:</b>${values[0].plafond}m Ecrins: ${values[1].plafond}m Sisteron: ${values[2].plafond}m</li>
                                     <li style="margin-top: 20px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3258,6.0315,10">Meteo-Parapente</a></i></li>`;
                                 document.getElementById('qnh').value = data.pressure;
                                 updateFLs();
