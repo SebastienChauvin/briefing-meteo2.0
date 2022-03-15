@@ -102,11 +102,11 @@
                 <section data-autoslide="11000">
                     <ul id="datapoints">
                         <li>Chargement...</li>
-                        <li style="margin-top: 20px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3258,6.0315,10">Meteo-Parapente</a></i></li>
+                        <li style="margin-top: 20px; font-size: 14px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3327,6.0535,10">Meteo-Parapente</a></i></li>
                         <script>
                             const c = async () => {
                                 const d = (lat, lon, mp) => fetch(`https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=${lat}&lon=${lon}${mp ? "&sources=mp" : ""}`).then(r => r.json());
-                                values = await Promise.all([d(44.3248, 6.0329, false), d(44.401, 6.3824, true), d(44.193, 5.94, true)]);
+                                values = await Promise.all([d(44.3327, 6.0535, false), d(44.6558, 6.9144, true), d(43.8274, 5.7882, true)]);
                                 data = values[0];
                                 document.getElementById('datapoints').innerHTML = `
                                     <li><b>QNH&nbsp;:</b> ${data.pressure} hPa
@@ -120,8 +120,9 @@
                                     </ul>
                                     </li>
                                     <li><b>Temp&nbsp;:</b> ${data.temp}&deg;C <b>ISO 0&deg;C&nbsp;:</b> ${data.iso0.toFixed(0)}m <b>ISO -10&deg;C&nbsp;:</b> ${data.isoM10.toFixed(0)}m</li>
-                                    <li><b>Plafond&nbsp;: </b>${values[0].plafond.toFixed(0)}m <b>Ecrins&nbsp;:</b> ${values[1].plafond.toFixed(0)}m <b>Sisteron&nbsp;:</b> ${values[2].plafond.toFixed(0)}m</li>
-                                    <li style="margin-top: 20px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3258,6.0315,10">Meteo-Parapente</a></i></li>`;
+                                    <li><b>Plafond&nbsp;: </b>${values[0].plafond.toFixed(0)}m <b><a href="https://meteo-parapente.com/#/44.6558,6.9144,11">Ubaye</a>&nbsp;:</b> ${values[1].plafond.toFixed(0)}m <b><a href="https://meteo-parapente.com/#/43.8274,5.7882,10">Manosque</a>&nbsp;:</b> ${values[2].plafond.toFixed(0)}m</li>
+                                    <li style="margin-top: 20px; font-size: 14px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3327,6.0535,10">Meteo-Parapente</a></i></li>
+`;
                                 document.getElementById('qnh').value = data.pressure;
                                 updateFLs();
                             };
