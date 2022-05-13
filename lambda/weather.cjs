@@ -69,7 +69,7 @@ const parseMeteociel = (data) => {
                         return {time: '--'};
                     }
                 });
-            const l = r.find((v) => v.time === '13:00') ?? r[0];
+            const l = r.find((v) => v.time === '14:00') ?? r[0];
             resolve(l ?? {});
         });
         const parser = new htmlparser.Parser(handler);

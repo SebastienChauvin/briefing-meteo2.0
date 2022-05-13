@@ -105,13 +105,13 @@
                         <li style="margin-top: 20px; font-size: 14px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3327,6.0535,10">Meteo-Parapente</a></i></li>
                         <script>
                             const c = async () => {
-                                const d = (lat, lon, mp) => fetch(`https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=${lat}&lon=${lon}${mp ? "&sources=mp" : "&sources=mc"}`).then(r => r.json());
-                                values = await Promise.all([d(44.3327, 6.0535, false), d(44.6558, 6.9144, true), d(43.8274, 5.7882, true)]);
+                                const d = (lat, lon, sources) => fetch(`https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=${lat}&lon=${lon}&sources=${sources}`).then(r => r.json());
+                                values = await Promise.all([d(44.3327, 6.0535, ''), d(44.6558, 6.9144, 'mp'), d(43.8274, 5.7882, 'mp')]);
                                 data = values[0];
                                 document.getElementById('datapoints').innerHTML = `
                                     <li><b>QNH&nbsp;:</b> ${data.pressure} hPa
                                     <li><b>Coucher du soleil&nbsp;:</b> ${data.sunset}
-                                    <li><b>Vents</b>
+                                    <li><b>Vents à ${data.time}:</b>
                                     <ul>
                                        <li><b>Surface&nbsp;:</b> ${data.windSurface}</li>
                                        <li><b>1500 m&nbsp;:</b> ${data.wind1500}</li>
