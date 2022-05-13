@@ -106,7 +106,7 @@
                         <script>
                             const c = async () => {
                                 const d = (lat, lon, sources) => fetch(`https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=${lat}&lon=${lon}&sources=${sources}`).then(r => r.json());
-                                values = await Promise.all([d(44.3327, 6.0535, ''), d(44.6558, 6.9144, 'mp'), d(43.8274, 5.7882, 'mp')]);
+                                values = await Promise.all([d(44.3327, 6.0535, 'ow,mc,mp'), d(44.6558, 6.9144, 'mp'), d(43.8274, 5.7882, 'mp')]);
                                 data = values[0];
                                 document.getElementById('datapoints').innerHTML = `
                                     <li><b>QNH&nbsp;:</b> ${data.pressure} hPa
