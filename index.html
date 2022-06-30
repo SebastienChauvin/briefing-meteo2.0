@@ -56,7 +56,7 @@
                           liste: ['LFJF','LFNH','LFJE','LFHE','LFLU','LFHD','LFKE']},
                         { nom: 'Alpes du Nord',
                           liste: ['LFLG','LFLE','LFKA','LFKA','LFKX','LFLJ','LFKD','LFKR','LFLP','LFHM','LFHZ']},
-            
+
                     ];
                     // liste des notams de FIR à afficher, (un devrait suffir dans la plupart des cas)
                     var listeFIR = [
@@ -65,8 +65,8 @@
                     //{ nom: 'FIR Paris',
                     //liste: ['LFFF']},
                     ];
-            
-            
+
+
                     // On initialise la date du jour pour tout le document
                     var date = new Date();
                     var timeSince1970 = date.getTime();
@@ -89,9 +89,9 @@
                         while (currentTime + miliseconds >= new Date().getTime()) {
                        }
                     }
-			    </script>    
-			
-			
+			    </script>
+
+
 			    <!-- Premier slide -->
 			    <section>
                     <h2>Briefing Météo</h2>
@@ -106,7 +106,7 @@
                         <script>
                             const c = async () => {
                                 const d = (lat, lon, sources) => fetch(`https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=${lat}&lon=${lon}&sources=${sources}`).then(r => r.json());
-                                values = await Promise.all([d(44.3327, 6.0535, 'ow,mc,mp'), d(44.6558, 6.9144, 'mp'), d(43.8274, 5.7882, 'mp')]);
+                                values = await Promise.all([d(44.3327, 6.0535, 'ow,mc,mp'), d(44.6558, 6.9144, 'mp'), d(43.837924, 5.983979, 'mp')]);
                                 data = values[0];
                                 document.getElementById('datapoints').innerHTML = `
                                     <li><b>QNH&nbsp;:</b> ${data.pressure} hPa
@@ -120,7 +120,7 @@
                                     </ul>
                                     </li>
                                     <li><b>Temp&nbsp;:</b> ${data.temp}&deg;C <b>ISO 0&deg;C&nbsp;:</b> ${data.iso0.toFixed(0)}m <b>ISO -10&deg;C&nbsp;:</b> ${data.isoM10.toFixed(0)}m</li>
-                                    <li><b>Plafond&nbsp;: </b>${values[0].plafond.toFixed(0)}m <b><a href="https://meteo-parapente.com/#/44.6558,6.9144,11">Ubaye</a>&nbsp;:</b> ${values[1].plafond.toFixed(0)}m <b><a href="https://meteo-parapente.com/#/43.8274,5.7882,10">Manosque</a>&nbsp;:</b> ${values[2].plafond.toFixed(0)}m</li>
+                                    <li><b>Plafond</b><br/><b><a href="https://meteo-parapente.com/#/44.3327,6.0535,11">Local</a>&nbsp;:</b>${values[0].plafond.toFixed(0)}m <b><a href="https://meteo-parapente.com/#/43.837924,5.983979,11">Valensole</a>&nbsp;:</b> ${values[2].plafond.toFixed(0)}m<a href="https://meteo-parapente.com/#/44.6558,6.9144,11">Relief</a>&nbsp;:</b> ${values[1].plafond.toFixed(0)}m <b></li>
                                     <li style="margin-top: 20px; font-size: 14px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3327,6.0535,10">Meteo-Parapente</a></i></li>
 `;
                                 document.getElementById('qnh').value = data.pressure;
@@ -139,7 +139,7 @@
                         document.write('<img src="https://cdn.knmi.nl/knmi/map/page/weer/waarschuwingen_verwachtingen/weerkaarten/PL'+day+'12_large.gif" style="height:620px">');
                     </script>
 			    </section>
-			
+
 
                 <section>
 			    <!-- les photos satellites sont chargées une à une et réassemblées en image animée avec la librairie gallery.css pour reveal.js -->
@@ -149,15 +149,15 @@
                         <script>
                             var minutesat = minutes;
                             var hoursat = hours;
-            
+
                             if(minutesat>=0){minutesat = '00';}
                             if(minutesat>=15){minutesat = '15';}
                             if(minutesat>=30){minutesat = '30';}
                             if(minutesat>=45){minutesat = '45';}
-            
+
                             var previousSat = function(){
                                 if(minutesat=='00'){minutesat = '45'; hoursat--; if(hoursat.toString().length==1){var zero = '0'; hoursat = zero.concat(hoursat);}}
-                                else{ 
+                                else{
                                     if(minutesat=='15'){minutesat = '00';}
                                     else{
                                         if(minutesat=='30'){minutesat = '15';}
@@ -167,7 +167,7 @@
                                     }
                                 }
                             }
-            
+
                             var arrayImages = [];
                             for(i=0; i<10; i++){
                                 arrayImages.push('<li><img src="https://fr.sat24.com/image?type=infraPolair&region=eu&timestamp='+ymd+hoursat+minutesat+ '"></li>');
@@ -176,13 +176,13 @@
                             for(j=arrayImages.length-1; j>0; j--){
                                 document.write(arrayImages[j]);
                                 if(j==1){document.write(arrayImages[j]); document.write(arrayImages[j]);}
-            
+
                             }
                         </script>
                     </ul>
 			    </section>
-			
-			
+
+
 			    <!-- un slide -->
 			    <!-- les photos satellites sont chargées une à une et réassemblées en image animée avec la librairie gallery.css pour reveal.js -->
 			    <section data-autoslide="11000">
@@ -191,16 +191,16 @@
                         <script>
                             var minutesat = minutes;
                             var hoursat = hours;
-            
-            
+
+
                             if(minutesat>=0){minutesat = '00';}
                             if(minutesat>=15){minutesat = '15';}
                             if(minutesat>=30){minutesat = '30';}
                             if(minutesat>=45){minutesat = '45';}
-            
+
                             var previousSat = function(){
                                 if(minutesat=='00'){minutesat = '45'; hoursat--; if(hoursat.toString().length==1){var zero = '0'; hoursat = zero.concat(hoursat);}}
-                                else{ 
+                                else{
                                     if(minutesat=='15'){minutesat = '00';}
                                     else{
                                         if(minutesat=='30'){minutesat = '15';}
@@ -210,7 +210,7 @@
                                     }
                                 }
                             }
-            
+
                             var arrayImages = [];
                             for(i=0; i<10; i++){
                                 arrayImages.push('<li><img src="https://fr.sat24.com/image?type=visual&region=fr&timestamp='+ymd+hoursat+minutesat+ '"></li>');
@@ -230,14 +230,14 @@
 <!--                    <h4>Géopotentielle à 500mb</h4>-->
 <!--                    <img src="https://static.meteoblue.com/pub/nems12/maps/00VHG50_012.jpg" style="height:620px;">-->
 <!--			    </section>-->
-			
+
 			    <!-- un slide -->
                 <section>
 			    <section>
                     <h4>Radar pluie</h4>
                     <img src="https://www.meteo60.fr/radars/animation-radar-france.gif" style="height:620px;">
 			    </section>
-			
+
 			    <!-- un slide -->
 			    <!-- un slide -->
 			    <section>
@@ -268,53 +268,53 @@
                         <script>document.write(`<img src="https://modeles7.meteociel.fr/modeles/arome/runs/${ymd}00/arome-51-12-0.png?$\{day}-04" style="max-width:100%; max-height:100%; height:620px">`);</script>
                     </section>
                 </section>
-			
+
             <!-- sondage météociel -->
                 <section>
             	<section>
                     <h4>Sondage modélisé Météociel / La Motte Du Caire</h4>
                     <iframe src="https://www.meteociel.fr/modeles/sondage2arome.php?archive=0&ech=12&map=1&wrf=0&region=&type=1&lat=44.3248&lon=6.0329" width="1024" height="768"></iframe>
 			    </section>
-			
+
 			    <section>
                     <h4>Sondage modélisé Météociel / Briançon</h4>
                     <iframe src="https://www.meteociel.fr/modeles/sondage2arome.php?archive=0&ech=12&map=1&wrf=0&region=&type=1&lat=44.8964&lon=6.64941" width="1024" height="768"></iframe>
 			    </section>
                 </section>
-			
-			<!-- un slide 
+
+			<!-- un slide
 			    <section>
                     <h4>Humidité relative 12H UTC</h4>
                     <script>
                         document.write('<img src="https://modeles2.meteociel.fr/modeles_gfs/runs/'+ymd+'00/12-600.GIF" style="max-width:100%; max-height:100%; height:620px">');
                     </script>
 			    </section> -->
-			
-			    <!-- un slide 
+
+			    <!-- un slide
 			    <section>
                     <h4>Surface based CAPE 12H UTC</h4>
                     <script>
                         document.write('<img src="https://modeles2.meteociel.fr/modeles_gfs/runs/'+ymd+'00/12-505.GIF" style="max-width:100%; max-height:100%; height:620px">');
-                    </script>    
+                    </script>
 			    </section> -->
-			
-			    <!-- un slide 
+
+			    <!-- un slide
 			    <section>
                     <h4>Températures à 9h UTC</h4>
                     <script>
                         document.write('<img src="https://meteomaps.s3.amazonaws.com/eltiempo/datamaps/meteorama_fr_temp-'+ymd+'0900.png" style="max-width:100%; max-height:100%;">');
-                    </script> 
+                    </script>
 			    </section> -->
-			
-			    <!-- un slide 
+
+			    <!-- un slide
 			    <section>
                     <h4>Températures à 15h UTC</h4>
                     <script>
                         document.write('<img src="https://meteomaps.s3.amazonaws.com/eltiempo/datamaps/meteorama_fr_temp-'+ymd+'1500.png" style="max-width:100%; max-height:100%;">');
-                    </script> 
+                    </script>
 			    </section> -->
-			
-			
+
+
 			<!-- un tableau des FL du jour en fonction du QNH, et en dessous la page que j'utilise pour determiner le qnh du jour, les heures de coucher du soleil etc etc -->
 			    <section>
 			    <section>
@@ -322,7 +322,7 @@
                         function round5(x){
                             return Math.ceil(x/5)*5;
                         }
-            
+
                         $(document).ready(function() {
                             updateFLs = function() {
                                 var qnh_value = $("#qnh").val();
@@ -330,41 +330,41 @@
                                 var pMer = 1013.25;
                                 var delta = 0;
                                 $("#qnh").val(qnh_value);
-            
+
                                 delta = (qnh_value - pMer) * mhPa;
                                 delta = delta.toFixed(0);
                                 $("#delta").text(delta);
-                                
+
                                 fl = delta*1 + 2286*1;
                                 fl = round5(fl);
                                 ;
                                 $("#fl75").text(fl);
-                                
+
                                 fl = delta*1 + 3505*1;
                                 fl = round5(fl);
                                 ;
                                 $("#fl115").text(fl);
-            
+
                                 fl = delta*1 + 3810*1;
                                 fl = round5(fl);
                                 ;
                                 $("#fl125").text(fl);
-            
+
                                 fl = delta*1 + 4115*1;
                                 fl = round5(fl);
                                 ;
                                 $("#fl135").text(fl);
-            
+
                                 fl = delta*1 + 4419*1;
                                 fl = round5(fl);
                                 ;
-                                $("#fl145").text(fl);                    
-            
+                                $("#fl145").text(fl);
+
                                 fl = delta*1 + 4724*1;
                                 fl = round5(fl);
                                 ;
                                 $("#fl155").text(fl);
-                                
+
                                 fl = delta*1 + 5943*1;
                                 fl = round5(fl);
                                 fl = fl+' (5800 Bure)';
@@ -373,10 +373,10 @@
                             $("#qnh").change(updateFLs);
                         });
                     </script>
-                    
+
                     <h4>Table des Niveaux de Vol</h4>
                     <div class="div_qnh">
-            
+
                         <div style="display:block; ">
                             <table class="alti" >
                                 <tbody>
@@ -407,14 +407,14 @@
                             </tbody></table>
                         </div>
                     </div>
-			        
+
 			    </section>
-			 
+
 			    <section data-autoslide="1">
 			        <iframe src="https://www.meteociel.fr/previsions/1655/la_motte_du_caire.htm" width="1024" height="768"></iframe>
 			    </section>
 
-			
+
 			    <section data-autoslide="1">
                     <h4>Bulletins vol à voile</h4>
                     <iframe src="https://aviation.meteo.fr/accueil.php#debut_page" width="1024" height="768"></iframe>
@@ -447,9 +447,9 @@
                     <img src="./Diapositive-4.jpg" style="height:620px;">
                 </section>
                 </section>
-			
-			
-			<!-- un slide 
+
+
+			<!-- un slide
 			    <section>
         <script>
             $(document).ready(function() {
@@ -468,8 +468,8 @@
             <li><a href="https://www.sia.aviation-civile.gouv.fr/asp/frameset_fr.asp?m=1" target="_blank" class="roll"><span data-title="Sup AIP">Sup AIP</span></a></li>
         </ul>
 			    </section> -->
-			
-			
+
+
 			<!-- Tous les slides montrant les Notams selon la liste définie plus haut, pour les 12 prochaines heures -->
                 <section data-autoslide="1">
                     <iframe src="notaminfo.html" width="1024" height="768"></iframe>
@@ -480,9 +480,9 @@
                     <h2>Demain</h2>
                     <h2>Tomorrow</h2>
 			    </section>
-			
-			
-			
+
+
+
 			    <section>
                     <h4>Prévision Front à 12H UTC J+1</h4>
                     <script>
@@ -492,12 +492,12 @@
                         document.write('<img src="https://cdn.knmi.nl/knmi/map/page/weer/waarschuwingen_verwachtingen/weerkaarten/PL'+day+'12_large.gif" style="height:620px;">');
                     </script>
 			    </section>
-			
+
 <!--			    <section>-->
 <!--                    <h4>Géopotentielle à 500mb J+1</h4>-->
 <!--                    <img src="https://static.meteoblue.com/pub/nems12/maps/00VHG50_036.jpg" style="height:620px;">-->
 <!--			    </section>-->
-			
+
 			    <section>
 
                     <script>
@@ -505,7 +505,7 @@
                         document.write(`<h4>Prévisions à 24h (${jour})</h4><img src="https://www.lameteo.org/images/previsions/${jour}.png" style="height:620px">`);
                     </script>
 			    </section>
-			
+
 			    <section>
                    <h2>Bons vols</h2>
                    <img src="https://www-ee.stanford.edu/~hellman/soaring/pics/020717Yos/14.jpg" style="height:600px">
