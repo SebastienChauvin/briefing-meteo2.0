@@ -148,7 +148,7 @@
                 <section>
 			    <!-- les photos satellites sont chargées une à une et réassemblées en image animée avec la librairie gallery.css pour reveal.js -->
 			    <section data-autoslide="11000">
-                    <h4>Satellite infrarouge Europe</h4>
+                    <h4>Satellite Europe</h4>
                     <ul class="gallery" data-interval="0.5" data-iterations="2">
                         <script>
                             var minutesat = minutes;
@@ -171,10 +171,9 @@
                                     }
                                 }
                             }
-
                             var arrayImages = [];
                             for(i=0; i<10; i++){
-                                arrayImages.push('<li><img src="https://fr.sat24.com/image?type=infraPolair&region=eu&timestamp='+ymd+hoursat+minutesat+ '"></li>');
+                                arrayImages.push('<li><img src="https://imn-api.meteoplaza.com/v4/nowcast/tiles/satellite-europe/' + ymd+hoursat+minutesat+ '/7/41/61/50/68?outputtype=jpeg"></li>');
                                 previousSat();
                             }
                             for(j=arrayImages.length-1; j>0; j--){
@@ -186,47 +185,6 @@
                     </ul>
 			    </section>
 
-
-			    <!-- un slide -->
-			    <!-- les photos satellites sont chargées une à une et réassemblées en image animée avec la librairie gallery.css pour reveal.js -->
-			    <section data-autoslide="11000">
-                    <h4>Satellite visible France</h4>
-                    <ul class="gallery" data-interval="0.5" data-iterations="2">
-                        <script>
-                            var minutesat = minutes;
-                            var hoursat = hours;
-
-
-                            if(minutesat>=0){minutesat = '00';}
-                            if(minutesat>=15){minutesat = '15';}
-                            if(minutesat>=30){minutesat = '30';}
-                            if(minutesat>=45){minutesat = '45';}
-
-                            var previousSat = function(){
-                                if(minutesat=='00'){minutesat = '45'; hoursat--; if(hoursat.toString().length==1){var zero = '0'; hoursat = zero.concat(hoursat);}}
-                                else{
-                                    if(minutesat=='15'){minutesat = '00';}
-                                    else{
-                                        if(minutesat=='30'){minutesat = '15';}
-                                        else{
-                                            if(minutesat=='45'){minutesat = '30';}
-                                        }
-                                    }
-                                }
-                            }
-
-                            var arrayImages = [];
-                            for(i=0; i<10; i++){
-                                arrayImages.push('<li><img src="https://fr.sat24.com/image?type=visual&region=fr&timestamp='+ymd+hoursat+minutesat+ '"></li>');
-                                previousSat();
-                            }
-                            for(j=arrayImages.length-1; j>0; j--){
-                                document.write(arrayImages[j]);
-                                if(j==1){document.write(arrayImages[j]); document.write(arrayImages[j]);}
-                            }
-                        </script>
-                    </ul>
-			    </section>
                 </section>
 
 			    <!-- un slide -->
@@ -427,10 +385,10 @@
 
                 <section>
                     <section>
-                        <img src="https://www.dkfgg.de/club.jpg" style="max-height:620px;">
+                        <img src="https://www.2vl.de/club.jpg" style="max-height:620px;">
                     </section>
                     <section>
-                        <img src="https://www.dkfgg.de/hangar.jpg" style="max-height:620px;">
+                        <img src="https://www.2vl.de/hangar.jpg" style="max-height:620px;">
                     </section>
                 </section>
                 <section>

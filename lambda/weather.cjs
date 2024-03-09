@@ -69,7 +69,7 @@ const parseMeteociel = (data) => {
                         return {time: '--'};
                     }
                 });
-            const l = r.find((v) => v.time === '14:00') ?? r.find((v) => v.time === '13:00') ?? r[r.length - 2];
+            const l = r.find((v) => v.time === '14:00') ?? r.find((v) => v.time === '13:00') ?? r[2] ?? r[0];
             resolve(l ?? {});
         });
         const parser = new htmlparser.Parser(handler);
@@ -121,14 +121,14 @@ exports.handler = async (event) => {
 // })
 // return 0;
 
-// const fs = require('fs'); // DEBUG
-//
-// fs.readFile('motte.html', (err, data) => {
-//     d = parseMeteociel(data).then((d) => {
-//         console.log(d);
-//     });
-// })
-// return 0;
+const fs = require('fs'); // DEBUG
+
+fs.readFile('motte.html', (err, data) => {
+    d = parseMeteociel(data).then((d) => {
+        console.log(d);
+    });
+})
+return 0;
 
 //
 // let lat = `44.4014`;
