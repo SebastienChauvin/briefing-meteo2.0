@@ -20,11 +20,18 @@
         <link rel="stylesheet" href="./css/brief.css">
         <script src="./js/jquery.min.js"></script>
 
-
-
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
-
+        <style>
+            @media print {
+                body {
+                    font-size: 14px;
+                }
+                .reveal {
+                    display: none;
+                }
+            }
+        </style>
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -108,6 +115,31 @@
                                 const d = (lat, lon, sources) => fetch(`https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=${lat}&lon=${lon}&sources=${sources}`).then(r => r.json());
                                 values = await Promise.all([d(44.3327, 6.0535, 'ow,mc,mp'), d(44.6558, 6.9144, 'mp'), d(43.837924, 5.983979, 'mp')]);
                                 data = values[0];
+                                document.getElementById('datapointsPrint').innerHTML = `
+                                    <li><b>QNH&nbsp;:</b> ${data.pressure} hPa
+                                    <li><b>Coucher du soleil&nbsp;:</b> ${data.sunset}
+                                    <li><b>Vents à ${data.time}:</b>
+                                    <ul>
+                                       <li><b>Surface&nbsp;:</b> ${data.windSurface}</li>
+                                       <li><b>1500 m&nbsp;:</b> ${data.wind1500}</li>
+                                       <li><b>3000 m&nbsp;:</b> ${data.wind3000}</li>
+                                       <li><b>5000 m&nbsp;:</b> ${data.wind5000}</li>
+                                    </ul>
+                                    </li>
+                                    <li><b>Temp&nbsp;:</b> ${data.temp}&deg;C <b>ISO 0&deg;C&nbsp;:</b> ${data.iso0.toFixed(0)}m <b>ISO -10&deg;C&nbsp;:</b> ${data.isoM10.toFixed(0)}m</li>
+                                    <li><b>Nuages&nbsp;:</b></li>
+                                    <li><b>Plafond&nbsp;:</b><br/>
+                                    <b>Local&nbsp;:&nbsp;</b>${values[0].plafond.toFixed(0)}m
+                                    <b>Valensole&nbsp;:&nbsp;</b> ${values[2].plafond.toFixed(0)}m
+                                    <b>Relief&nbsp;:&nbsp;</b> ${values[1].plafond.toFixed(0)}m
+                                    </li>
+                                    <li><b>Thermiques&nbsp;:</b></li>
+                                    <li><b>Dynamiques&nbsp;:</b></li>
+                                    <li><b>Conditions particulières&nbsp;:</b></li>
+                                    <li><b>Espaces aériens&nbsp;:</b></li>
+                                    <li><b>Demain&nbsp;:</b></li>
+                                    <li style="margin-top: 20px; font-size: 14px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3327,6.0535,10">Meteo-Parapente</a></i></li>
+`;
                                 document.getElementById('datapoints').innerHTML = `
                                     <li><b>QNH&nbsp;:</b> ${data.pressure} hPa
                                     <li><b>Coucher du soleil&nbsp;:</b> ${data.sunset}
@@ -299,38 +331,41 @@
 
                                 fl = delta*1 + 2286*1;
                                 fl = round5(fl);
-                                ;
                                 $("#fl75").text(fl);
+                                $("#fl75p").text(fl);
 
                                 fl = delta*1 + 3505*1;
                                 fl = round5(fl);
-                                ;
                                 $("#fl115").text(fl);
+                                $("#fl115p").text(fl);
 
                                 fl = delta*1 + 3810*1;
                                 fl = round5(fl);
-                                ;
                                 $("#fl125").text(fl);
+                                $("#fl125p").text(fl);
 
                                 fl = delta*1 + 4115*1;
                                 fl = round5(fl);
-                                ;
                                 $("#fl135").text(fl);
+                                $("#fl135p").text(fl);
 
                                 fl = delta*1 + 4419*1;
                                 fl = round5(fl);
-                                ;
                                 $("#fl145").text(fl);
+                                $("#fl145p").text(fl);
 
                                 fl = delta*1 + 4724*1;
                                 fl = round5(fl);
-                                ;
                                 $("#fl155").text(fl);
+                                $("#fl155p").text(fl);
 
                                 fl = delta*1 + 5943*1;
                                 fl = round5(fl);
                                 fl = fl+' (5800 Bure)';
                                 $("#fl195").text(fl);
+                                fl = delta*1 + 5943*1;
+                                fl = round5(fl);
+                                $("#fl195p").text(fl);
                             };
                             $("#qnh").change(updateFLs);
                         });
@@ -338,7 +373,6 @@
 
                     <h4>Table des Niveaux de Vol</h4>
                     <div class="div_qnh">
-
                         <div style="display:block; ">
                             <table class="alti" >
                                 <tbody>
@@ -346,25 +380,25 @@
                                     <th>QNH</th><th><input type="text" id="qnh" class="big_input_qnh" value="1000"></th><th>FL</th><th class='centre'>Altitude du jour</th>
                                 </tr>
                                 <tr>
-                                    <td></td><td></td><td>75</td><td class='centre' id='fl75'>2175</td>
+                                    <td></td><td></td><td>75</td><td class='centre' id='fl75'>--</td>
                                 </tr>
                                 <tr>
-                                    <td>Delta</td><td id="delta">-113</td><td>115</td><td class='centre' id='fl115'>3395</td>
+                                    <td>Delta</td><td id="delta">-113</td><td>115</td><td class='centre' id='fl115'>--</td>
                                 </tr>
                                 <tr>
-                                    <td></td><td></td><td>125</td><td class='centre' id='fl125'>3700</td>
+                                    <td></td><td></td><td>125</td><td class='centre' id='fl125'>--</td>
                                 </tr>
                                 <tr>
-                                    <td></td><td></td><td>135</td><td class='centre' id='fl135'>4005</td>
+                                    <td></td><td></td><td>135</td><td class='centre' id='fl135'>--</td>
                                 </tr>
                                 <tr>
-                                    <td></td><td></td><td>145</td><td class='centre' id='fl145'>4310</td>
+                                    <td></td><td></td><td>145</td><td class='centre' id='fl145'>--</td>
                                 </tr>
                                 <tr>
-                                    <td></td><td></td><td>155</td><td class='centre' id='fl155'>4615</td>
+                                    <td></td><td></td><td>155</td><td class='centre' id='fl155'>--</td>
                                 </tr>
                                 <tr>
-                                    <td></td><td></td><td>195</td><td class='centre' id='fl195'>5830 (5800 Bure)</td>
+                                    <td></td><td></td><td>195</td><td class='centre' id='fl195'>-- (5800 Bure)</td>
                                 </tr>
                             </tbody></table>
                         </div>
@@ -476,6 +510,40 @@
 			</div>
 
 		</div>
+
+        <div class="form">
+            <h1><img src="cvvmc.svg" width="200"/>Meteo du <script>document.write(day+'/'+month+'/'+year);</script></h1>
+            <table class="alti" >
+                <tbody>
+                <tr>
+                    <td>FL</td>
+                    <td>75</td>
+                    <td>115</td>
+                    <td>125</td>
+                    <td>135</td>
+                    <td>145</td>
+                    <td>155</td>
+                    <td>195</td>
+                </tr>
+                <tr>
+                    <td>Alt. (m)</td>
+                    <td id="fl75p">75</td>
+                    <td id="fl115p">115</td>
+                    <td id="fl125p">125</td>
+                    <td id="fl135p">135</td>
+                    <td id="fl145p">145</td>
+                    <td id="fl155p">155</td>
+                    <td id="fl195p">195</td>
+                </tr>
+                <tr>
+                    <td colspan="7"></td>
+                    <td>(5800 Bure)</td>
+                </tr>
+                </tbody></table>
+            <ul id="datapointsPrint">
+                <li>Chargement...</li>
+            </ul>
+        </div>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
