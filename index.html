@@ -27,19 +27,56 @@
                 body {
                     font-size: 14px;
                 }
+
                 .reveal {
                     display: none;
                 }
+
+                td {
+                    width: 100px;
+                }
+
+                .alti {
+                    width: 700px;
+                    border-spacing: 0px;
+                    border-collapse: collapse;
+                    font-size: 15px;
+                    margin-bottom: 20px;
+                }
+
+                li::marker {
+                    content: none;
+                }
+
+                li {
+                    margin: 25px 0;
+                }
+
+                ul {
+                    padding-inline-start: 10px;
+                }
+
+                body, p, td, li, div {
+                    font-size: 17pt !important;
+                }
+
+                footer {
+                    position: fixed;
+                    bottom: 0;
+                }
+                h1 img {
+                    margin: 0 30px;
+                }
             }
         </style>
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+<!--		&lt;!&ndash; Printing and PDF exports &ndash;&gt;-->
+<!--		<script>-->
+<!--			var link = document.createElement( 'link' );-->
+<!--			link.rel = 'stylesheet';-->
+<!--			link.type = 'text/css';-->
+<!--			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';-->
+<!--			document.getElementsByTagName( 'head' )[0].appendChild( link );-->
+<!--		</script>-->
 
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -112,7 +149,8 @@
                         <li style="margin-top: 20px; font-size: 14px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3327,6.0535,10">Meteo-Parapente</a></i></li>
                         <script>
                             const c = async () => {
-                                const d = (lat, lon, sources) => fetch(`https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=${lat}&lon=${lon}&sources=${sources}`).then(r => r.json());
+                                // const d = (lat, lon, sources) => fetch(`https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=${lat}&lon=${lon}&sources=${sources}`).then(r => r.json());
+                                const d = (lat, lon, sources) => fetch(`testdata.json`).then(r => r.json());
                                 values = await Promise.all([d(44.3327, 6.0535, 'ow,mc,mp'), d(44.6558, 6.9144, 'mp'), d(43.837924, 5.983979, 'mp')]);
                                 data = values[0];
                                 document.getElementById('datapointsPrint').innerHTML = `
@@ -126,19 +164,24 @@
                                        <li><b>5000 m&nbsp;:</b> ${data.wind5000}</li>
                                     </ul>
                                     </li>
-                                    <li><b>Temp&nbsp;:</b> ${data.temp}&deg;C <b>ISO 0&deg;C&nbsp;:</b> ${data.iso0.toFixed(0)}m <b>ISO -10&deg;C&nbsp;:</b> ${data.isoM10.toFixed(0)}m</li>
+                                    <li>
+                                    <table style="width: 100%">
+                                        <td><b>Temp&nbsp;:</b> ${data.temp}&deg;C</td>
+                                        <td><b>ISO 0&deg;C&nbsp;:</b> ${data.iso0.toFixed(0)}m</td>
+                                        <td><b>ISO -10&deg;C&nbsp;:</b> ${data.isoM10.toFixed(0)}m</td>
+                                    </table>
+                                    </li>
                                     <li><b>Nuages&nbsp;:</b></li>
-                                    <li><b>Plafond&nbsp;:</b><br/>
-                                    <b>Local&nbsp;:&nbsp;</b>${values[0].plafond.toFixed(0)}m
-                                    <b>Valensole&nbsp;:&nbsp;</b> ${values[2].plafond.toFixed(0)}m
-                                    <b>Relief&nbsp;:&nbsp;</b> ${values[1].plafond.toFixed(0)}m
+                                    <li><b>Plafond&nbsp;:</b>
+                                    <i>Local&nbsp;:&nbsp;</i>${values[0].plafond.toFixed(0)}m
+                                    <i>Valensole&nbsp;:&nbsp;</i> ${values[2].plafond.toFixed(0)}m
+                                    <i>Relief&nbsp;:&nbsp;</i> ${values[1].plafond.toFixed(0)}m
                                     </li>
                                     <li><b>Thermiques&nbsp;:</b></li>
                                     <li><b>Dynamiques&nbsp;:</b></li>
                                     <li><b>Conditions particulières&nbsp;:</b></li>
                                     <li><b>Espaces aériens&nbsp;:</b></li>
                                     <li><b>Demain&nbsp;:</b></li>
-                                    <li style="margin-top: 20px; font-size: 14px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3327,6.0535,10">Meteo-Parapente</a></i></li>
 `;
                                 document.getElementById('datapoints').innerHTML = `
                                     <li><b>QNH&nbsp;:</b> ${data.pressure} hPa
@@ -512,7 +555,15 @@
 		</div>
 
         <div class="form">
-            <h1><img src="cvvmc.svg" width="200"/>Meteo du <script>document.write(day+'/'+month+'/'+year);</script></h1>
+            <table style="width: 100%; margin-bottom: 50px;">
+                <td style="width: 100px">
+                    <img src="cvvmc.svg" width="100"/>
+                </td>
+                <td style="width: 100%">
+                    <h2>Météo du <script>document.write(day+'/'+month+'/'+year);</script></h2>
+                    <p>Situation générale:</p>
+                </td>
+            </table>
             <table class="alti" >
                 <tbody>
                 <tr>
@@ -526,7 +577,7 @@
                     <td>195</td>
                 </tr>
                 <tr>
-                    <td>Alt. (m)</td>
+                    <td rowspan="2">Alt. (m)</td>
                     <td id="fl75p">75</td>
                     <td id="fl115p">115</td>
                     <td id="fl125p">125</td>
@@ -536,8 +587,8 @@
                     <td id="fl195p">195</td>
                 </tr>
                 <tr>
-                    <td colspan="7"></td>
-                    <td>(5800 Bure)</td>
+                    <td colspan="5"></td>
+                    <td style="text-align: right" colspan="2">(5800 Bure)</td>
                 </tr>
                 </tbody></table>
             <ul id="datapointsPrint">
@@ -584,4 +635,5 @@
 		</script>
 
 	</body>
+    <footer>Sources: meteociel (Arome), openweathermap, Meteo-Parapente</footer>
 </html>
