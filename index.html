@@ -63,6 +63,8 @@
                 footer {
                     position: fixed;
                     bottom: 0;
+                    font-size: xx-small;
+                    color: lightgrey;
                 }
                 h1 img {
                     margin: 0 30px;
@@ -147,65 +149,6 @@
                     <ul id="datapoints">
                         <li>Chargement...</li>
                         <li style="margin-top: 20px; font-size: 14px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3327,6.0535,10">Meteo-Parapente</a></i></li>
-                        <script>
-                            const c = async () => {
-                                const d = (lat, lon, sources) => fetch(`https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=${lat}&lon=${lon}&sources=${sources}`).then(r => r.json());
-                                values = await Promise.all([d(44.3327, 6.0535, 'ow,mc,mp'), d(44.6558, 6.9144, 'mp'), d(43.837924, 5.983979, 'mp')]);
-                                data = values[0];
-                                document.getElementById('datapointsPrint').innerHTML = `
-                                    <li><b>QNH&nbsp;:</b> ${data.pressure} hPa
-                                    <li><b>Coucher du soleil&nbsp;:</b> ${data.sunset}
-                                    <li><b>Vents à ${data.time}:</b>
-                                    <ul>
-                                       <li><b>Surface&nbsp;:</b> ${data.windSurface}</li>
-                                       <li><b>1500 m&nbsp;:</b> ${data.wind1500}</li>
-                                       <li><b>3000 m&nbsp;:</b> ${data.wind3000}</li>
-                                       <li><b>5000 m&nbsp;:</b> ${data.wind5000}</li>
-                                    </ul>
-                                    </li>
-                                    <li>
-                                    <table style="width: 100%">
-                                        <td><b>Temp&nbsp;:</b> ${data.temp}&deg;C</td>
-                                        <td><b>ISO 0&deg;C&nbsp;:</b> ${data.iso0.toFixed(0)}m</td>
-                                        <td><b>ISO -10&deg;C&nbsp;:</b> ${data.isoM10.toFixed(0)}m</td>
-                                    </table>
-                                    </li>
-                                    <li><b>Nuages&nbsp;:</b></li>
-                                    <li><b>Plafond&nbsp;:</b>
-                                    <i>Local&nbsp;:&nbsp;</i>${values[0].plafond.toFixed(0)}m
-                                    <i>Valensole&nbsp;:&nbsp;</i> ${values[2].plafond.toFixed(0)}m
-                                    <i>Relief&nbsp;:&nbsp;</i> ${values[1].plafond.toFixed(0)}m
-                                    </li>
-                                    <li><b>Thermiques&nbsp;:</b></li>
-                                    <li><b>Dynamiques&nbsp;:</b></li>
-                                    <li><b>Conditions particulières&nbsp;:</b></li>
-                                    <li><b>Espaces aériens&nbsp;:</b></li>
-                                    <li><b>Demain&nbsp;:</b></li>
-`;
-                                document.getElementById('datapoints').innerHTML = `
-                                    <li><b>QNH&nbsp;:</b> ${data.pressure} hPa
-                                    <li><b>Coucher du soleil&nbsp;:</b> ${data.sunset}
-                                    <li><b>Vents à ${data.time}:</b>
-                                    <ul>
-                                       <li><b>Surface&nbsp;:</b> ${data.windSurface}</li>
-                                       <li><b>1500 m&nbsp;:</b> ${data.wind1500}</li>
-                                       <li><b>3000 m&nbsp;:</b> ${data.wind3000}</li>
-                                       <li><b>5000 m&nbsp;:</b> ${data.wind5000}</li>
-                                    </ul>
-                                    </li>
-                                    <li><b>Temp&nbsp;:</b> ${data.temp}&deg;C <b>ISO 0&deg;C&nbsp;:</b> ${data.iso0.toFixed(0)}m <b>ISO -10&deg;C&nbsp;:</b> ${data.isoM10.toFixed(0)}m</li>
-                                    <li><b>Plafond</b><br/>
-                                    <b><a href="https://meteo-parapente.com/#/44.3327,6.0535,11">Local</a>&nbsp;:&nbsp;</b>${values[0].plafond.toFixed(0)}m
-                                    <b><a href="https://meteo-parapente.com/#/43.837924,5.983979,11">Valensole</a>&nbsp;:&nbsp;</b> ${values[2].plafond.toFixed(0)}m
-                                    <b><a href="https://meteo-parapente.com/#/44.6558,6.9144,11">Relief</a>&nbsp;:&nbsp;</b> ${values[1].plafond.toFixed(0)}m
-                                    </li>
-                                    <li style="margin-top: 20px; font-size: 14px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3327,6.0535,10">Meteo-Parapente</a></i></li>
-`;
-                                document.getElementById('qnh').value = data.pressure;
-                                updateFLs();
-                            };
-                            c();
-                        </script>
                     </ul>
                 </section>
 
@@ -633,6 +576,68 @@
             }
 		</script>
 
-	</body>
+        <script>
+            const c = async () => {
+                const d = (lat, lon, sources) => fetch(`https://sk7uyl0qc1.execute-api.eu-west-3.amazonaws.com/default/glider_weather?lat=${lat}&lon=${lon}&sources=${sources}`).then(r => r.json());
+                // const d = () => ({"pressure": "1023","temp": 16,"sunset": "18:49:03","time": "13:00","temp3000": "-0.4","temp5000": "-18.9","windSurface": "Ouest-Nord-Ouest 2.7 kt","wind1500": "Nord-Ouest 10.8 kt","wind3000": "Nord-Nord-Ouest 29.7 kt","wind5000": "Ouest-Nord-Ouest 32.4 kt","iso0": 2986.1,"isoM10": 4503.6,"plafond": 1891.1});
+                const values = await Promise.all([d(44.3327, 6.0535, 'ow,mc,mp'), d(44.6558, 6.9144, 'mp'), d(43.837924, 5.983979, 'mp')]);
+                const data = values[0];
+                const aa = (v) => Math.floor((v + 99) / 100) * 100;
+                document.getElementById('datapointsPrint').innerHTML = `
+                                    <li><b>QNH&nbsp;:</b> ${data.pressure} hPa
+                                    <li><b>Coucher du soleil&nbsp;:</b> ${data.sunset}
+                                    <li><b>Vents à ${data.time}:</b>
+                                    <ul>
+                                       <li><b>Surface&nbsp;:</b> ${data.windSurface}</li>
+                                       <li><b>1500 m&nbsp;:</b> ${data.wind1500}</li>
+                                       <li><b>3000 m&nbsp;:</b> ${data.wind3000}</li>
+                                       <li><b>5000 m&nbsp;:</b> ${data.wind5000}</li>
+                                    </ul>
+                                    </li>
+                                    <li>
+                                    <table style="width: 100%">
+                                        <td><b>Temp&nbsp;:</b> ${data.temp}&deg;C</td>
+                                        <td><b>ISO 0&deg;C&nbsp;:</b> ${data.iso0.toFixed(0)}m</td>
+                                        <td><b>ISO -10&deg;C&nbsp;:</b> ${data.isoM10.toFixed(0)}m</td>
+                                    </table>
+                                    </li>
+                                    <li><b>Nuages&nbsp;:</b></li>
+                                    <li><b>Plafond&nbsp;:</b>
+                                    <i>Local&nbsp;:&nbsp;</i>${aa(values[0].plafond)}m
+                                    <i>Valensole&nbsp;:&nbsp;</i> ${aa(values[2].plafond)}m
+                                    <i>Relief&nbsp;:&nbsp;</i> ${aa(values[1].plafond)}m
+                                    </li>
+                                    <li><b>Thermiques&nbsp;:</b></li>
+                                    <li><b>Dynamiques&nbsp;:</b></li>
+                                    <li><b>Conditions particulières&nbsp;:</b></li>
+                                    <li><b>Espaces aériens&nbsp;:</b></li>
+                                    <li><b>Demain&nbsp;:</b></li>
+`;
+                document.getElementById('datapoints').innerHTML = `
+                                    <li><b>QNH&nbsp;:</b> ${data.pressure} hPa
+                                    <li><b>Coucher du soleil&nbsp;:</b> ${data.sunset}
+                                    <li><b>Vents à ${data.time}:</b>
+                                    <ul>
+                                       <li><b>Surface&nbsp;:</b> ${data.windSurface}</li>
+                                       <li><b>1500 m&nbsp;:</b> ${data.wind1500}</li>
+                                       <li><b>3000 m&nbsp;:</b> ${data.wind3000}</li>
+                                       <li><b>5000 m&nbsp;:</b> ${data.wind5000}</li>
+                                    </ul>
+                                    </li>
+                                    <li><b>Temp&nbsp;:</b> ${data.temp}&deg;C <b>ISO 0&deg;C&nbsp;:</b> ${data.iso0.toFixed(0)}m <b>ISO -10&deg;C&nbsp;:</b> ${data.isoM10.toFixed(0)}m</li>
+                                    <li><b>Plafond</b><br/>
+                                    <b><a href="https://meteo-parapente.com/#/44.3327,6.0535,11">Local</a>&nbsp;:&nbsp;</b>${aa(values[0].plafond)}m
+                                    <b><a href="https://meteo-parapente.com/#/43.837924,5.983979,11">Valensole</a>&nbsp;:&nbsp;</b> ${aa(values[2].plafond)}m
+                                    <b><a href="https://meteo-parapente.com/#/44.6558,6.9144,11">Relief</a>&nbsp;:&nbsp;</b> ${aa(values[1].plafond)}m
+                                    </li>
+                                    <li style="margin-top: 20px; font-size: 14px"><i>Sources: <a href="https://www.meteociel.fr/previsions-haute-altitude-arome/1655/la_motte_du_caire.htm">meteociel (Arome)</a>, openweathermap, <a href="https://meteo-parapente.com/#/44.3327,6.0535,10">Meteo-Parapente</a></i></li>
+`;
+                document.getElementById('qnh').value = data.pressure;
+                updateFLs();
+            };
+            c();
+        </script>
+
+    </body>
     <footer>Sources: meteociel (Arome), openweathermap, Meteo-Parapente</footer>
 </html>
