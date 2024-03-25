@@ -468,9 +468,9 @@
                     <h4>Prévision Front à 12H UTC J+1</h4>
                     <script>
                         var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-                        var day = tomorrow.getUTCDate();
-                        if(day.toString().length==1){var zero = '0'; day = zero.concat(day);}
-                        document.write('<img src="https://cdn.knmi.nl/knmi/map/page/weer/waarschuwingen_verwachtingen/weerkaarten/PL'+day+'12_large.gif" style="height:620px;">');
+                        var dayTomorrow = tomorrow.getUTCDate();
+                        if(dayTomorrow.toString().length==1){var zero = '0'; dayTomorrow = zero.concat(dayTomorrow);}
+                        document.write('<img src="https://cdn.knmi.nl/knmi/map/page/weer/waarschuwingen_verwachtingen/weerkaarten/PL'+dayTomorrow+'12_large.gif" style="height:620px;">');
                     </script>
 			    </section>
 
