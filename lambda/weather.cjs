@@ -40,7 +40,7 @@ const parseMeteociel = (data) => {
                     try {
                         const items = select(l, 'td');
                         if (i === 0) items.shift();
-                        const w = (i) => `${items[i].children[0].attribs.alt.split(':')[0].trim()} ${(items[i].children[1].raw / 1.852).toFixed(1)} kt`;
+                        const w = (i) => `${items[i].children[0].attribs.alt.split(':')[0].trim()} ${(Math.floor(((items[i].children[1].raw / 1.852) + 4) / 5) * 5)} kt`;
                         const t = (i) => items[i]?.children?.[0]?.children?.[0]?.raw ?? items[i]?.children?.[0]?.raw;
                         const temp = t(1);
                         const temp3000 = t(4);
@@ -69,7 +69,7 @@ const parseMeteociel = (data) => {
                         return {time: '--'};
                     }
                 });
-            const l = r.find((v) => v.time === '14:00') ?? r.find((v) => v.time === '13:00') ?? r[2] ?? r[0];
+            const l = r.find((v) => v.time === '14:00') ?? r.find((v) => v.time === '13:00') ?? r[r.length - 2];
             resolve(l ?? {});
         });
         const parser = new htmlparser.Parser(handler);
@@ -121,14 +121,14 @@ exports.handler = async (event) => {
 // })
 // return 0;
 
-const fs = require('fs'); // DEBUG
-
-fs.readFile('motte.html', (err, data) => {
-    d = parseMeteociel(data).then((d) => {
-        console.log(d);
-    });
-})
-return 0;
+// const fs = require('fs'); // DEBUG
+//
+// fs.readFile('motte.html', (err, data) => {
+//     d = parseMeteociel(data).then((d) => {
+//         console.log(d);
+//     });
+// })
+// return 0;
 
 //
 // let lat = `44.4014`;
