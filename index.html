@@ -40,10 +40,15 @@
                     width: 700px;
                     border-spacing: 0px;
                     border-collapse: collapse;
-                    font-size: 15px;
                     margin-bottom: 20px;
                 }
 
+                .alti td {
+                    padding: 0px;
+                }
+                .alti tbody {
+                    border: 1px solid grey;
+                }
                 li::marker {
                     content: none;
                 }
@@ -56,8 +61,20 @@
                     padding-inline-start: 10px;
                 }
 
+                .winds li {
+                    margin: 10px 0;
+                }
+
+                .larger {
+                    margin: 40px 0;
+                }
+
                 body, p, td, li, div {
                     font-size: 17pt !important;
+                }
+
+                .alti td {
+                    font-size: 14pt !important;
                 }
 
                 footer {
@@ -497,7 +514,7 @@
 		</div>
 
         <div class="form">
-            <table style="width: 100%; margin-bottom: 50px;">
+            <table style="width: 100%; margin-bottom: 80px;">
                 <td style="width: 100px">
                     <img src="cvvmc.svg" width="100"/>
                 </td>
@@ -586,7 +603,7 @@
                 document.getElementById('datapointsPrint').innerHTML = `
                                     <li><b>QNH&nbsp;:</b> ${data.pressure} hPa
                                     <li><b>Coucher du soleil&nbsp;:</b> ${data.sunset}
-                                    <li><b>Vents à ${data.time}:</b>
+                                    <li class="winds"><b>Vents à ${data.time}:</b>
                                     <ul>
                                        <li><b>Surface&nbsp;:</b> ${data.windSurface}</li>
                                        <li><b>1500 m&nbsp;:</b> ${data.wind1500}</li>
@@ -609,8 +626,8 @@
                                     </li>
                                     <li><b>Thermiques&nbsp;:</b></li>
                                     <li><b>Dynamiques&nbsp;:</b></li>
-                                    <li><b>Conditions particulières&nbsp;:</b></li>
-                                    <li><b>Espaces aériens&nbsp;:</b></li>
+                                    <li class="larger"><b>Conditions particulières&nbsp;:</b></li>
+                                    <li class="larger"><b>Espaces aériens&nbsp;:</b></li>
                                     <li><b>Demain&nbsp;:</b></li>
 `;
                 document.getElementById('datapoints').innerHTML = `
