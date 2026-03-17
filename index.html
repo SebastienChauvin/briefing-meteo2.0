@@ -91,7 +91,7 @@
                     position: fixed;
                     right: 20px;
                     bottom: 20px;
-                    display: block;
+                    display: block !important;
                     font-size: 14pt !important;
                     color: #000;
                 }
@@ -100,23 +100,10 @@
                     font-size: 24pt !important;
                 }
             }
-
             .print-first-takeoff {
                 display: none;
             }
         </style>
-<!--		&lt;!&ndash; Printing and PDF exports &ndash;&gt;-->
-<!--		<script>-->
-<!--			var link = document.createElement( 'link' );-->
-<!--			link.rel = 'stylesheet';-->
-<!--			link.type = 'text/css';-->
-<!--			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';-->
-<!--			document.getElementsByTagName( 'head' )[0].appendChild( link );-->
-<!--		</script>-->
-
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
 	</head>
 
 	<body>
@@ -667,9 +654,7 @@
             };
             c();
         </script>
-
-        <div class="print-first-takeoff">1<sup>er</sup> décollage:<br/><span class="large">__&nbsp__</span></div>
-
+        <div class="print-first-takeoff">1<sup>er</sup> décollage:<br/><br/><span class="large">___&nbsp:&nbsp___</span></div>
     </body>
     <footer>Sources: meteociel (Arome), openweathermap, Meteo-Parapente</footer>
 </html>
