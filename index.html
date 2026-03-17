@@ -86,6 +86,23 @@
                 h1 img {
                     margin: 0 30px;
                 }
+
+                .print-first-takeoff {
+                    position: fixed;
+                    right: 20px;
+                    bottom: 20px;
+                    display: block;
+                    font-size: 14pt !important;
+                    color: #000;
+                }
+
+                .print-first-takeoff .large {
+                    font-size: 24pt !important;
+                }
+            }
+
+            .print-first-takeoff {
+                display: none;
             }
         </style>
 <!--		&lt;!&ndash; Printing and PDF exports &ndash;&gt;-->
@@ -650,6 +667,8 @@
             };
             c();
         </script>
+
+        <div class="print-first-takeoff">1<sup>er</sup> décollage:<br/><span class="large">__&nbsp__</span></div>
 
     </body>
     <footer>Sources: meteociel (Arome), openweathermap, Meteo-Parapente</footer>
