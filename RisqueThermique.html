@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://www.ffvp.fr/risque-thermique/RisqueThermique.html -->
+<html lang="fr"><style class="adjust-screen-brightness" media="screen">html::before, :not(:root):not(video):fullscreen::before {
+  content: " ";
+  z-index: 2147483647;
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1);
+}video:fullscreen {
+  filter: brightness(0.9);
+}
+:not(:root):fullscreen::backdrop {
+  display: none;
+}</style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./Risque Thermique_files/saved_resource"></script><script>(function(w,i,g){w[g]=w[g]||[];if(typeof w[g].push=='function')w[g].push(i)})
+(window,'GTM-PPQKB5Q','google_tags_first_party');</script><script>(function(w,d,s,l){w[l]=w[l]||[];(function(){w[l].push(arguments);})('set', 'developer_id.dY2E1Nz', true);
+		var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s);j.async=true;j.src='/51bi/';
+		f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer');</script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Risque Thermique</title>
+
+  <link rel="manifest" href="https://www.ffvp.fr/risque-thermique/manifest.json">
+  <link rel="apple-touch-icon" href="https://www.ffvp.fr/risque-thermique/apple-touch-icon.png">
+  <meta name="theme-color" content="#08a5db">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Risque Thermique">
+
+  <link href="./Risque Thermique_files/css2" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --accent: #08a5db;
+      --accent-bg: #e6f6fc;
+      --accent-border: #7dd3f0;
+
+      --danger: #c62828;
+      --danger-bg: #ffebee;
+      --danger-border: #ef9a9a;
+
+      --orange: #e65100;
+      --orange-bg: #fff3e0;
+      --orange-border: #ffcc80;
+
+      --yellow: #f57f17;
+      --yellow-bg: #fffde7;
+      --yellow-border: #fff176;
+
+      --green: #2e7d32;
+      --green-bg: #e8f5e9;
+      --green-border: #a5d6a7;
+
+      --surface: #ffffff;
+      --bg: #f5f3ef;
+      --text: #1a1a1a;
+      --text-muted: #666;
+      --border: #e0ddd8;
+
+      --radius: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --accent: #08a5db;
+        --accent-bg: #063a4f;
+        --accent-border: #0a6d99;
+
+        --danger: #ef5350;
+        --danger-bg: #3b1212;
+        --danger-border: #7f2020;
+
+        --orange: #ff7043;
+        --orange-bg: #3b1f0a;
+        --orange-border: #7f3a10;
+
+        --yellow: #ffca28;
+        --yellow-bg: #3b2e00;
+        --yellow-border: #7f5f00;
+
+        --green: #66bb6a;
+        --green-bg: #0d2e10;
+        --green-border: #1e5c22;
+
+        --surface: #1e1e1e;
+        --bg: #121212;
+        --text: #e8e6e1;
+        --text-muted: #999;
+        --border: #333;
+      }
+    }
+
+    html {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 16px;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+    }
+
+    .page {
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      overflow-x: hidden;
+    }
+
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .header-left h1 {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .header-left p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .info-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      align-self: flex-start;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+
+    .info-btn:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .search-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .search-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: opacity .2s, transform .1s;
+      white-space: nowrap;
+    }
+
+    .search-btn:hover { opacity: .88; }
+    .search-btn:active { transform: scale(.97); }
+
+    .day-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .summary-card .label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'DM Mono', monospace;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .summary-card .value {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .summary-card .sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .legend-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+      border: 1.5px solid transparent;
+    }
+
+    .legend-pill:hover {
+      transform: scale(1.05);
+      box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    }
+
+    .legend-pill.red { background: var(--danger-bg); color: var(--danger); border-color: var(--danger-border); }
+    .legend-pill.orange { background: var(--orange-bg); color: var(--orange); border-color: var(--orange-border); }
+    .legend-pill.yellow { background: var(--yellow-bg); color: var(--yellow); border-color: var(--yellow-border); }
+    .legend-pill.green { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      transition: transform .15s, border-color .15s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+    }
+
+    .tl-item.red { border-color: var(--danger-border); }
+    .tl-item.red::before { background: var(--danger); }
+    .tl-item.orange { border-color: var(--orange-border); }
+    .tl-item.orange::before { background: var(--orange); }
+    .tl-item.yellow { border-color: var(--yellow-border); }
+    .tl-item.yellow::before { background: var(--yellow); }
+    .tl-item.green { border-color: var(--green-border); }
+    .tl-item.green::before { background: var(--green); }
+
+    .tl-item:hover { transform: translateX(2px); }
+
+    .tl-item.current {
+      border: 1.5px solid var(--border);
+      box-shadow: 0 12px 26px rgba(0,0,0,.12);
+      z-index: 2;
+      animation: currentPulse 1.8s infinite;
+    }
+
+    @keyframes currentPulse {
+      0% { box-shadow: 0 10px 22px rgba(0,0,0,.10); }
+      50% { box-shadow: 0 16px 34px rgba(0,0,0,.16); }
+      100% { box-shadow: 0 10px 22px rgba(0,0,0,.10); }
+    }
+
+    .tl-hour {
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .tl-main {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .tl-temp {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .tl-hum {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: 'DM Mono', monospace;
+    }
+
+    .tl-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: .3px;
+      white-space: nowrap;
+    }
+
+    .tl-badge.red { background: var(--danger-bg); color: var(--danger); }
+    .tl-badge.orange { background: var(--orange-bg); color: var(--orange); }
+    .tl-badge.yellow { background: var(--yellow-bg); color: var(--yellow); }
+    .tl-badge.green { background: var(--green-bg); color: var(--green); }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.5);
+      z-index: 1000;
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: var(--surface);
+      border-radius: 16px;
+      max-width: 480px;
+      width: 100%;
+      padding: 28px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,.2);
+      animation: modalIn .2s ease;
+    }
+
+    @keyframes modalIn {
+      from { transform: scale(.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-level {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      margin-bottom: 12px;
+    }
+
+    .modal-box h2 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .modal-box ul { padding-left: 20px; }
+    .modal-box li { margin-bottom: 8px; font-size: 15px; line-height: 1.5; }
+
+    .message {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--text-muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+    }
+
+    .spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      margin: 0 auto 12px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error { color: var(--danger); }
+
+    .city-wrap {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+
+    .city-wrap input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 36px 10px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .clear-btn {
+      display: none;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--border);
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 10px;
+      line-height: 1;
+      color: var(--text-muted);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      transition: background .15s, color .15s;
+    }
+
+    .clear-btn:hover { background: var(--accent); color: white; }
+    .clear-btn.visible { display: flex; }
+    .city-wrap input:focus { border-color: var(--accent); }
+
+    .autocomplete-list {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+      z-index: 100;
+      overflow: hidden;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+
+    .autocomplete-list.open { display: block; }
+
+    .ac-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      border-bottom: 1px solid var(--border);
+      transition: background .12s;
+    }
+
+    .ac-item:last-child { border-bottom: none; }
+    .ac-item:hover, .ac-item.active { background: var(--accent-bg); }
+    .ac-item-icon { font-size: 14px; opacity: .6; flex-shrink: 0; }
+    .ac-item-main { flex: 1; min-width: 0; }
+
+    .ac-item-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ac-item-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'DM Mono', monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ac-item-country {
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .ac-spinner {
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: 'DM Mono', monospace;
+      text-align: center;
+    }
+
+    #week-bar {
+      display: none;
+      gap: 6px;
+      margin-bottom: 16px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    #week-bar::-webkit-scrollbar { display: none; }
+    #week-bar.loaded { display: flex; }
+
+    .week-day {
+      flex: 1;
+      min-width: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      padding: 6px 4px 5px;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s, border-color .15s;
+      position: relative;
+    }
+
+    .week-day.risk-green  { background: var(--green-bg);  border-color: var(--green-border); }
+    .week-day.risk-yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+    .week-day.risk-orange { background: var(--orange-bg); border-color: var(--orange-border); }
+    .week-day.risk-red    { background: var(--danger-bg); border-color: var(--danger-border); }
+
+    .week-day:hover { transform: translateY(-2px); box-shadow: 0 5px 14px rgba(0,0,0,.13); }
+
+    .week-day.active { outline: 3px solid; outline-offset: -3px; }
+    .week-day.active.risk-green  { outline-color: var(--green); }
+    .week-day.active.risk-yellow { outline-color: var(--yellow); }
+    .week-day.active.risk-orange { outline-color: var(--orange); }
+    .week-day.active.risk-red    { outline-color: var(--danger); }
+
+    .week-day-name { font-size: 10px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+    .week-day.risk-green  .week-day-name { color: var(--green); }
+    .week-day.risk-yellow .week-day-name { color: var(--yellow); }
+    .week-day.risk-orange .week-day-name { color: var(--orange); }
+    .week-day.risk-red    .week-day-name { color: var(--danger); }
+
+    .week-day-num { font-size: 15px; font-weight: 800; line-height: 1; color: var(--text); }
+    .week-day-temp { font-size: 11px; font-family: 'DM Mono', monospace; font-weight: 500; white-space: nowrap; }
+    .week-day.risk-green  .week-day-temp { color: var(--green); }
+    .week-day.risk-yellow .week-day-temp { color: var(--yellow); }
+    .week-day.risk-orange .week-day-temp { color: var(--orange); }
+    .week-day.risk-red    .week-day-temp { color: var(--danger); }
+
+    .vigilance-banner {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+      border: 1.5px solid;
+      animation: fadeIn .3s ease;
+      color: inherit;
+      cursor: pointer;
+      transition: background-color .15s, transform .08s ease;
+    }
+
+    .vigilance-banner:active { transform: scale(0.98); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .vigilance-banner.rouge { background: var(--danger-bg); border-color: var(--danger-border); color: var(--danger); }
+    .vigilance-banner.orange { background: var(--orange-bg); border-color: var(--orange-border); color: var(--orange); }
+
+    .vigilance-banner-icon { font-size: 22px; flex-shrink: 0; line-height: 1; }
+    .vigilance-banner-body { display: flex; flex-direction: row; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+    .vigilance-banner-body strong { font-weight: 700; white-space: nowrap; }
+    .vigilance-banner-body span { font-size: 13px; opacity: .85; white-space: nowrap; }
+    .vigilance-banner-arrow { flex-shrink: 0; font-size: 14px; font-weight: 700; opacity: .6; }
+
+    @media (max-width: 560px) {
+      body { padding: 14px 10px; }
+      .search-bar { flex-direction: column; align-items: stretch; padding: 12px; gap: 10px; }
+      .city-wrap { width: 100%; }
+      .search-btn { width: 100%; }
+      .tl-item { grid-template-columns: 48px 1fr; grid-template-rows: auto auto; row-gap: 4px; gap: 8px; padding: 10px 12px; }
+      .tl-hour { grid-column: 1; grid-row: 1 / 3; align-self: center; }
+      .tl-main { grid-column: 2; grid-row: 1; flex-wrap: wrap; gap: 4px; }
+      .tl-badge { grid-column: 2; grid-row: 2; justify-self: start; font-size: 10px; padding: 2px 8px; }
+      .tl-temp { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="header">
+    <div class="header-left">
+      <h1>Risque d'agression thermique</h1>
+      <p>Prévisions heure par heure · Open-Meteo</p>
+    </div>
+    <button class="info-btn" onclick="if (!window.__cfRLUnblockHandlers) return false; showInfoModal()" aria-label="À propos">?</button>
+  </div>
+
+  <div id="week-bar" class="loaded">
+      <div class="week-day risk-yellow active" data-date="2026-06-24" onclick="selectDay(&#39;2026-06-24&#39;)">
+        <span class="week-day-name">Auj.</span>
+        <span class="week-day-num">24</span>
+        <span class="week-day-temp">33°</span>
+      </div>
+      <div class="week-day risk-yellow" data-date="2026-06-25" onclick="selectDay(&#39;2026-06-25&#39;)">
+        <span class="week-day-name">jeu.</span>
+        <span class="week-day-num">25</span>
+        <span class="week-day-temp">34°</span>
+      </div>
+      <div class="week-day risk-yellow" data-date="2026-06-26" onclick="selectDay(&#39;2026-06-26&#39;)">
+        <span class="week-day-name">ven.</span>
+        <span class="week-day-num">26</span>
+        <span class="week-day-temp">34°</span>
+      </div>
+      <div class="week-day risk-orange" data-date="2026-06-27" onclick="selectDay(&#39;2026-06-27&#39;)">
+        <span class="week-day-name">sam.</span>
+        <span class="week-day-num">27</span>
+        <span class="week-day-temp">36°</span>
+      </div>
+      <div class="week-day risk-yellow" data-date="2026-06-28" onclick="selectDay(&#39;2026-06-28&#39;)">
+        <span class="week-day-name">dim.</span>
+        <span class="week-day-num">28</span>
+        <span class="week-day-temp">35°</span>
+      </div>
+      <div class="week-day risk-yellow" data-date="2026-06-29" onclick="selectDay(&#39;2026-06-29&#39;)">
+        <span class="week-day-name">lun.</span>
+        <span class="week-day-num">29</span>
+        <span class="week-day-temp">32°</span>
+      </div>
+      <div class="week-day risk-yellow" data-date="2026-06-30" onclick="selectDay(&#39;2026-06-30&#39;)">
+        <span class="week-day-name">mar.</span>
+        <span class="week-day-num">30</span>
+        <span class="week-day-temp">33°</span>
+      </div></div>
+  <div id="vigilance-banner"></div>
+  <div id="summary">
+    <div class="day-summary">
+      <div class="summary-card">
+        <div class="label">Temp. max</div>
+        <div class="value" style="color:#f57f17">33°C</div>
+        <div class="sub">à 13h00</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Pic de danger</div>
+        <div class="value" style="font-size:18px;color:#f57f17">Moyenne</div>
+        <div class="sub">13h00 · 41% hum.</div>
+      </div>
+    </div></div>
+  <div id="legend-area"><div class="legend"><div class="legend-pill red" onclick="showModal(&#39;red&#39;)">● Élevée</div><div class="legend-pill orange" onclick="showModal(&#39;orange&#39;)">● Significative</div><div class="legend-pill yellow" onclick="showModal(&#39;yellow&#39;)">● Moyenne</div><div class="legend-pill green" onclick="showModal(&#39;green&#39;)">● Faible</div></div></div>
+  <div id="timeline"><div class="timeline">
+      <div class="tl-item yellow current" onclick="showModal(&#39;yellow&#39;)" style="background:linear-gradient(90deg, rgba(0,0,0,0.05), transparent)">
+        <div class="tl-hour">13:00</div>
+        <div class="tl-main">
+          <span class="tl-temp" style="color:#f57f17">33°C</span>
+          <span class="tl-hum">41% hum.</span>
+        </div>
+        <div class="tl-badge yellow">Moyenne</div>
+      </div>
+      <div class="tl-item yellow" onclick="showModal(&#39;yellow&#39;)">
+        <div class="tl-hour">14:00</div>
+        <div class="tl-main">
+          <span class="tl-temp" style="color:#f57f17">33°C</span>
+          <span class="tl-hum">38% hum.</span>
+        </div>
+        <div class="tl-badge yellow">Moyenne</div>
+      </div>
+      <div class="tl-item yellow" onclick="showModal(&#39;yellow&#39;)">
+        <div class="tl-hour">15:00</div>
+        <div class="tl-main">
+          <span class="tl-temp" style="color:#f57f17">32°C</span>
+          <span class="tl-hum">38% hum.</span>
+        </div>
+        <div class="tl-badge yellow">Moyenne</div>
+      </div>
+      <div class="tl-item green" onclick="showModal(&#39;green&#39;)">
+        <div class="tl-hour">16:00</div>
+        <div class="tl-main">
+          <span class="tl-temp" style="color:#2e7d32">26°C</span>
+          <span class="tl-hum">41% hum.</span>
+        </div>
+        <div class="tl-badge green">Faible</div>
+      </div>
+      <div class="tl-item green" onclick="showModal(&#39;green&#39;)">
+        <div class="tl-hour">17:00</div>
+        <div class="tl-main">
+          <span class="tl-temp" style="color:#2e7d32">22°C</span>
+          <span class="tl-hum">72% hum.</span>
+        </div>
+        <div class="tl-badge green">Faible</div>
+      </div>
+      <div class="tl-item green" onclick="showModal(&#39;green&#39;)">
+        <div class="tl-hour">18:00</div>
+        <div class="tl-main">
+          <span class="tl-temp" style="color:#2e7d32">20°C</span>
+          <span class="tl-hum">86% hum.</span>
+        </div>
+        <div class="tl-badge green">Faible</div>
+      </div>
+      <div class="tl-item green" onclick="showModal(&#39;green&#39;)">
+        <div class="tl-hour">19:00</div>
+        <div class="tl-main">
+          <span class="tl-temp" style="color:#2e7d32">21°C</span>
+          <span class="tl-hum">82% hum.</span>
+        </div>
+        <div class="tl-badge green">Faible</div>
+      </div>
+      <div class="tl-item green" onclick="showModal(&#39;green&#39;)">
+        <div class="tl-hour">20:00</div>
+        <div class="tl-main">
+          <span class="tl-temp" style="color:#2e7d32">21°C</span>
+          <span class="tl-hum">82% hum.</span>
+        </div>
+        <div class="tl-badge green">Faible</div>
+      </div>
+      <div class="tl-item green" onclick="showModal(&#39;green&#39;)">
+        <div class="tl-hour">21:00</div>
+        <div class="tl-main">
+          <span class="tl-temp" style="color:#2e7d32">21°C</span>
+          <span class="tl-hum">85% hum.</span>
+        </div>
+        <div class="tl-badge green">Faible</div>
+      </div>
+      <div class="tl-item green" onclick="showModal(&#39;green&#39;)">
+        <div class="tl-hour">22:00</div>
+        <div class="tl-main">
+          <span class="tl-temp" style="color:#2e7d32">20°C</span>
+          <span class="tl-hum">89% hum.</span>
+        </div>
+        <div class="tl-badge green">Faible</div>
+      </div></div></div>
+</div>
+
+<footer style="text-align: center; padding: 24px 16px 16px; font-family: &#39;DM Mono&#39;, monospace; font-size: 11px; color: var(--text-muted);">
+  © 2026 PG (pagroell at gmail.com) - V.2.0
+</footer>
+
+<div class="modal-overlay" id="modal" onclick="if (!window.__cfRLUnblockHandlers) return false; closeModal(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="if (!window.__cfRLUnblockHandlers) return false; closeModal()">×</button>
+    <div class="modal-level" id="modal-level-badge"></div>
+    <h2 id="modal-title"></h2>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-info" onclick="if (!window.__cfRLUnblockHandlers) return false; closeInfoModal(event)">
+  <div class="modal-box" style="max-width:540px; max-height:85vh; overflow-y:auto;">
+    <button class="modal-close" onclick="if (!window.__cfRLUnblockHandlers) return false; closeInfoModal()">×</button>
+    <h2 style="margin-bottom:14px;">Risques individuels liés à la chaleur</h2>
+    
+    <p class="info-intro" style="margin-bottom: 12px;">Un clic sur l'étiquette de risque ou sur la tranche horaire permet l'affichage des consignes associées.</p>
+    
+    <p class="info-intro" style="margin-bottom: 12px;">De même que son aéronef, le pilote et ses passagers sont sensibles aux agressions thermiques qui font principalement entrer en ligne de compte non seulement <strong>la température de l’air,</strong> mais également le <strong>taux d’humidité. </strong>La pratique de la <strong>voltige</strong>, l’<strong>âge</strong> ainsi que les <strong>pathologies</strong> individuelles éventuelles représentent également des facteurs supplémentaires de risque.</p>
+    
+    <p class="info-intro" style="margin-bottom: 20px;">Dans le cadre d’une démarche TEM adéquate, la prise en compte du niveau de vigilance canicule établi par Météo-France constitue également un élément de décision pertinent.</p>
+	
+    <hr style="border: 0; border-top: 1px solid var(--border); margin-bottom: 16px;">
+
+   <div style="background-color: var(--orange-bg); border-left: 4px solid var(--orange); padding: 12px 16px; border-radius: 4px; font-size: 14px; line-height: 1.5;">
+      <strong style="color: var(--orange); text-transform: uppercase; font-family: &#39;DM Mono&#39;, monospace; font-size: 12px; display: block; margin-bottom: 4px; letter-spacing: 0.5px;">
+        ⚠️ Nota  :
+      </strong>
+      En raison de la baisse de résistance thermique liée à la pratique de la voltige, à l'âge ou aux pathologies, il est conseillé aux pilotes concernés d'ajuster leur résultat selon la méthode indiquée sous ce <a href="https://www.ffvp.fr/risque-thermique/PDF_Risque.pdf" target="_blank" style="color: var(--orange); text-decoration: underline;">tableau</a>. En cas de doute, il convient de consulter un médecin aéronautique.
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+function showInfoModal() {
+  document.getElementById('modal-info').classList.add('open');
+  history.pushState({ modal: 'info' }, '');
+}
+
+function closeInfoModal(e) {
+  if (!e || e.target === document.getElementById('modal-info')) {
+    document.getElementById('modal-info').classList.remove('open');
+    if (history.state && history.state.modal === 'info') history.back();
+  }
+}
+
+function localDateStr(date) {
+  return date.toLocaleDateString('en-CA');
+}
+
+let selectedDate = localDateStr(new Date());
+let weekData = null;
+let lastVigilance = null;
+
+// Coordonnées fournies via l'URL : ?lat=47.75&lon=7.34[&tz=Europe/Paris]
+const selectedCoords = (function readCoordsFromUrl() {
+  const p = new URLSearchParams(location.search);
+  const latitude = parseFloat(p.get('lat'));
+  const longitude = parseFloat(p.get('lon'));
+  if (isNaN(latitude) || isNaN(longitude)) return null;
+  return { latitude, longitude, timezone: p.get('tz') || 'Europe/Paris' };
+})();
+
+const dangerInfo = {
+  red: { label: "ÉLEVÉE", title: "Zone d'agression thermique élevée", color: "#c62828", bg: "#ffebee", items: ["Risque très important de coup de chaleur", "Avion obligatoirement sous abri", "Attente au départ limitée au strict nécessaire", "Si fin de vol en zone rouge, plus de vol dans les 24h", "Absence totale d'activité physique avant un vol", "Très forte hydratation nécessaire avant, pendant et après un vol"] },
+  orange: { label: "SIGNIFICATIVE", title: "Zone d'agression thermique significative", color: "#e65100", bg: "#fff3e0", items: ["Risque potentiel de coup de chaleur", "Stationnement prolongé de l'avion sous abri", "Réduire autant que possible l'attente au départ", "Deux vols maxi par 24h avec repos entre les deux", "Activité physique modérée possible si repos de 4 h avant vol", "Forte hydratation nécessaire avant, pendant et après le vol"] },
+  yellow: { label: "MOYENNE", title: "Zone d'agression thermique moyenne", color: "#f57f17", bg: "#fffde7", items: ["Coup de chaleur possible mais exceptionnel (selon l'âge, la morphologie et les pathologies)", "Prévention du rayonnement solaire sur l'aéronef en extérieur", "Ventilation cabine conseillée en cas d'attente", "Plusieurs vols possibles par 24 h si repos suffisant", "Activité physique préalable possible si sensation d'être reposé", "Prévoir de quoi s'hydrater en quantité suffisante"] },
+  green: { label: "FAIBLE", title: "Zone d'agression thermique faible", color: "#2e7d32", bg: "#e8f5e9", items: ["Aucune précaution particulière nécessaire", "Conditions thermiques normales"] }
+};
+
+const DANGER_TABLE = {
+  45: ["red","red","red","red","red","red","red","red","red"],
+  44: ["red","red","red","red","red","red","red","red","red"],
+  43: ["orange","red","red","red","red","red","red","red","red"],
+  42: ["orange","red","red","red","red","red","red","red","red"],
+  41: ["orange","red","red","red","red","red","red","red","red"],
+  40: ["orange","orange","red","red","red","red","red","red","red"],
+  39: ["orange","orange","red","red","red","red","red","red","red"],
+  38: ["orange","orange","orange","red","red","red","red","red","red"],
+  37: ["yellow","orange","orange","red","red","red","red","red","red"],
+  36: ["yellow","orange","orange","red","red","red","red","red","red"],
+  35: ["yellow","yellow","orange","orange","red","red","red","red","red"],
+  34: ["yellow","yellow","yellow","orange","orange","red","red","red","red"],
+  33: ["yellow","yellow","yellow","yellow","orange","orange","red","red","red"],
+  32: ["green","yellow","yellow","yellow","yellow","orange","orange","red","red"],
+  31: ["green","green","yellow","yellow","yellow","yellow","orange","orange","red"],
+  30: ["green","green","green","yellow","yellow","yellow","yellow","orange","orange"],
+  29: ["green","green","green","green","green","yellow","yellow","yellow","orange"],
+  28: ["green","green","green","green","green","green","yellow","yellow","yellow"],
+  27: ["green","green","green","green","green","green","green","yellow","yellow"],
+  26: ["green","green","green","green","green","green","green","green","yellow"],
+  25: ["green","green","green","green","green","green","green","green","green"],
+  24: ["green","green","green","green","green","green","green","green","green"]
+};
+
+function getDanger(temp, rh) {
+  const t = Math.max(24, Math.min(45, Math.round(temp)));
+  const h = Math.max(10, Math.min(90, Math.round(rh / 10) * 10));
+  return DANGER_TABLE[t][(h / 10) - 1];
+}
+
+const levelLabel = { red: "Élevée", orange: "Significative", yellow: "Moyenne", green: "Faible" };
+
+function updateDate() {
+  document.querySelectorAll('.week-day').forEach(el => {
+    el.classList.toggle('active', el.dataset.date === selectedDate);
+  });
+}
+
+function selectDay(date) {
+  selectedDate = date;
+  updateDate();
+  renderDayFromCache();
+  renderVigilanceForDate(date);
+}
+
+function changeDay(d) {
+  const today = localDateStr(new Date());
+  const maxDate = new Date(); maxDate.setDate(maxDate.getDate() + 9);
+  const maxStr = localDateStr(maxDate);
+  const dt = new Date(selectedDate + 'T12:00:00'); dt.setDate(dt.getDate() + d);
+  const newDate = localDateStr(dt);
+  if (newDate < today || newDate > maxStr) return;
+  selectDay(newDate);
+}
+
+function showModal(level) {
+  const info = dangerInfo[level];
+  document.getElementById('modal-level-badge').textContent = info.label;
+  document.getElementById('modal-level-badge').style.cssText = `background:${info.bg};color:${info.color};`;
+  document.getElementById('modal-title').textContent = info.title;
+  document.getElementById('modal-body').innerHTML = '<ul>' + info.items.map(i => `<li>${i}</li>`).join('') + '</ul>';
+  document.getElementById('modal').classList.add('open');
+  history.pushState({ modal: true }, '');
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+    if (history.state && history.state.modal) history.back();
+  }
+}
+
+window.addEventListener('popstate', () => {
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('modal-info').classList.remove('open');
+});
+
+async function loadData() {
+  const tl = document.getElementById('timeline');
+  const sm = document.getElementById('summary');
+  const la = document.getElementById('legend-area');
+
+  if (!selectedCoords) {
+    tl.innerHTML = '<div class="message error">Coordonnées manquantes : ajoutez ?lat=…&lon=… à l\'URL.</div>';
+    sm.innerHTML = ''; la.innerHTML = '';
+    return;
+  }
+  tl.innerHTML = `<div class="message"><div class="spinner"></div>Chargement des prévisions…</div>`;
+  sm.innerHTML = ''; la.innerHTML = '';
+
+  try {
+    const { latitude, longitude, timezone } = selectedCoords;
+    const tz = timezone || 'Europe/Paris';
+    const vigilancePromise = fetchVigilance(latitude, longitude);
+
+    const wRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relative_humidity_2m&timezone=${encodeURIComponent(tz)}&forecast_days=10`);
+    const w = await wRes.json();
+
+    const nowInCity = new Date(new Date().toLocaleString('en-US', { timeZone: tz }));
+    const todayStr = new Date().toLocaleDateString('en-CA', { timeZone: tz });
+    const currentHour = nowInCity.getHours();
+
+    const levelRank = { red: 3, orange: 2, yellow: 1, green: 0 };
+    const byDate = {};
+
+    for (let i = 0; i < w.hourly.time.length; i++) {
+      const [date, timePart] = w.hourly.time[i].split('T');
+      const hour = parseInt(timePart);
+      if (hour < 6 || hour > 22) continue;
+
+      const temp = Math.round(w.hourly.temperature_2m[i]);
+      const rh   = Math.round(w.hourly.relative_humidity_2m[i]);
+      const lvl  = getDanger(temp, rh);
+
+      if (!byDate[date]) byDate[date] = { maxLevel: 'green', maxTemp: temp };
+      if (levelRank[lvl] > levelRank[byDate[date].maxLevel]) byDate[date].maxLevel = lvl;
+      if (temp > byDate[date].maxTemp) byDate[date].maxTemp = temp;
+    }
+
+    weekData = { byDate, tz, todayStr, currentHour, w };
+
+    lastVigilance = await vigilancePromise;
+
+    renderWeekBar();
+    renderDayFromCache();
+    renderVigilanceForDate(selectedDate);
+
+  } catch(e) {
+    tl.innerHTML = `<div class="message error">Impossible de charger les données (vérifiez votre connexion).</div>`;
+  }
+}
+
+function renderWeekBar() {
+  const wb = document.getElementById('week-bar');
+  if (!weekData) { wb.classList.remove('loaded'); return; }
+  const today = localDateStr(new Date());
+  const dates = Object.keys(weekData.byDate).sort().filter(d => d >= today).slice(0, 7);
+
+  wb.innerHTML = dates.map(date => {
+    const { maxLevel, maxTemp } = weekData.byDate[date];
+    const d = new Date(date + 'T12:00:00');
+    return `
+      <div class="week-day risk-${maxLevel}${date === selectedDate ? ' active' : ''}" data-date="${date}" onclick="selectDay('${date}')">
+        <span class="week-day-name">${date === today ? 'Auj.' : d.toLocaleDateString('fr-FR', { weekday: 'short' })}</span>
+        <span class="week-day-num">${d.getDate()}</span>
+        <span class="week-day-temp">${maxTemp}°</span>
+      </div>`;
+  }).join('');
+  wb.classList.add('loaded');
+}
+
+function renderDayFromCache() {
+  const tl = document.getElementById('timeline');
+  const sm = document.getElementById('summary');
+  const la = document.getElementById('legend-area');
+  if (!weekData) return;
+
+  const { w, todayStr, currentHour } = weekData;
+  const levelColors = { red: '#c62828', orange: '#e65100', yellow: '#f57f17', green: '#2e7d32' };
+  const slots = [];
+
+  for (let i = 0; i < w.hourly.time.length; i++) {
+    const [date, timePart] = w.hourly.time[i].split('T');
+    const hour = parseInt(timePart);
+    if (date !== selectedDate || hour < 6 || hour > 22) continue;
+    if (selectedDate === todayStr && hour < currentHour) continue;
+    slots.push({ hour, temp: Math.round(w.hourly.temperature_2m[i]), rh: Math.round(w.hourly.relative_humidity_2m[i]) });
+  }
+
+  if (!slots.length) { tl.innerHTML = '<div class="message">Aucune donnée disponible.</div>'; return; }
+
+  const maxT = Math.max(...slots.map(s => s.temp));
+  const maxTSlot = slots.find(s => s.temp === maxT);
+  const levelRank = { red: 3, orange: 2, yellow: 1, green: 0 };
+  const peakSlot = slots.reduce((best, s) => levelRank[getDanger(s.temp, s.rh)] > levelRank[getDanger(best.temp, best.rh)] ? s : best, slots[0]);
+  const peakLevel = getDanger(peakSlot.temp, peakSlot.rh);
+
+  sm.innerHTML = `
+    <div class="day-summary">
+      <div class="summary-card">
+        <div class="label">Temp. max</div>
+        <div class="value" style="color:${levelColors[getDanger(maxTSlot.temp, maxTSlot.rh)]}">${maxT}°C</div>
+        <div class="sub">à ${maxTSlot.hour}h00</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Pic de danger</div>
+        <div class="value" style="font-size:18px;color:${levelColors[peakLevel]}">${levelLabel[peakLevel]}</div>
+        <div class="sub">${peakSlot.hour}h00 · ${peakSlot.rh}% hum.</div>
+      </div>
+    </div>`;
+
+  la.innerHTML = `<div class="legend">${['red','orange','yellow','green'].map(l => `<div class="legend-pill ${l}" onclick="showModal('${l}')">● ${levelLabel[l]}</div>`).join('')}</div>`;
+
+  tl.innerHTML = '<div class="timeline">' + slots.map(s => {
+    const level = getDanger(s.temp, s.rh);
+    const isCurrent = selectedDate === todayStr && s.hour === currentHour;
+    return `
+      <div class="tl-item ${level}${isCurrent ? ' current' : ''}" onclick="showModal('${level}')" ${isCurrent ? `style="background:linear-gradient(90deg, rgba(0,0,0,0.05), transparent)"` : ''}>
+        <div class="tl-hour">${String(s.hour).padStart(2,'0')}:00</div>
+        <div class="tl-main">
+          <span class="tl-temp" style="color:${levelColors[level]}">${s.temp}°C</span>
+          <span class="tl-hum">${s.rh}% hum.</span>
+        </div>
+        <div class="tl-badge ${level}">${levelLabel[level]}</div>
+      </div>`;
+  }).join('') + '</div>';
+}
+
+// L'URL de l'API OpenDataSoft est désormais configurée en HTTPS strict
+async function fetchVigilance(lat, lon) {
+  try {
+    const geoRes = await fetch(`https://geo.api.gouv.fr/communes?lat=${lat}&lon=${lon}&fields=codeDepartement&format=json&geometry=centre`, { signal: AbortSignal.timeout(5000) });
+    if (!geoRes.ok) return null;
+    const geoData = await geoRes.json();
+    if (!geoData.length || !geoData[0].codeDepartement) return null;
+    const dept = geoData[0].codeDepartement;
+
+    const datasetUrl = `https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/weatherref-france-vigilance-meteo-departement/records?where=domain_id%3D%22${dept}%22%20and%20phenomenon%3D%22canicule%22%20and%20(echeance%3D%22J%22%20or%20echeance%3D%22J1%22)&limit=10`;
+    const vigRes = await fetch(datasetUrl, { signal: AbortSignal.timeout(6000) });
+    if (!vigRes.ok) return null;
+    const vigData = await vigRes.json();
+    const records = vigData.results || [];
+    
+    const vigilanceData = { J: [], J1: [] };
+    const formatHeureParis = (iso) => iso ? new Date(iso).toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit' }) : null;
+
+    records.forEach(record => {
+      const colorStr = String(record.color || '').toLowerCase();
+      if ((colorStr === 'rouge' || colorStr === 'orange') && vigilanceData[record.echeance]) {
+        vigilanceData[record.echeance].push({
+          level: colorStr,
+          dept,
+          heureDebut: formatHeureParis(record.begin_time),
+          heureFin: formatHeureParis(record.end_time)
+        });
+      }
+    });
+    return vigilanceData;
+  } catch(e) { return null; }
+}
+
+function renderVigilanceForDate(date) {
+  if (!lastVigilance || !weekData) { renderVigilanceBanners([]); return; }
+  if (date === weekData.todayStr) {
+    renderVigilanceBanners(lastVigilance.J);
+  } else {
+    const tomorrow = new Date(weekData.todayStr + 'T12:00:00'); tomorrow.setDate(tomorrow.getDate() + 1);
+    if (date === localDateStr(tomorrow)) {
+      renderVigilanceBanners(lastVigilance.J1);
+    } else {
+      renderVigilanceBanners([]);
+    }
+  }
+}
+
+function renderVigilanceBanners(vigilances) {
+  const el = document.getElementById('vigilance-banner');
+  if (!vigilances || vigilances.length === 0) { el.innerHTML = ''; return; }
+
+  vigilances.sort((a, b) => (a.heureDebut || '').localeCompare(b.heureDebut || ''));
+
+  el.innerHTML = vigilances.map(vigilance => {
+    const isRouge = vigilance.level === 'rouge';
+    const horaires = (vigilance.heureDebut && vigilance.heureFin) ? `De ${vigilance.heureDebut} à ${vigilance.heureFin}` : '';
+    return `
+      <div class="vigilance-banner ${vigilance.level}" onclick="window.open('https://vigilance.meteofrance.fr','_blank','noopener')">
+        <span class="vigilance-banner-icon">${isRouge ? '🌡️' : '⚠️'}</span>
+        <div class="vigilance-banner-body">
+          <strong>Vigilance ${vigilance.level.toUpperCase()} canicule</strong>
+          ${horaires ? `<span>${horaires}</span>` : ''}
+        </div>
+        <span class="vigilance-banner-arrow">▶</span>
+      </div>`;
+  }).join('');
+}
+
+updateDate();
+loadData();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a10b6432196ebb0a',t:'MTc4MjMwMDUzMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" src="./Risque Thermique_files/saved_resource.html"></iframe>
+</body></html>
